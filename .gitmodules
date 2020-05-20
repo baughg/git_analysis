@@ -1,0 +1,3 @@
+[submodule "git_analysis/platform_os"]
+	path = git_analysis/platform_os
+	url = https://github.com/baughg/platform_os.git
