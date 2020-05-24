@@ -6,13 +6,13 @@
 bool read_text(
 	const std::string &filename, std::string &content);
 
-int main() {
-	std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
-	std::string content{};
-
-	read_text(git_log_filename, content);
-	return 0;
-}
+//int main() {
+//	std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
+//	std::string content{};
+//
+//	read_text(git_log_filename, content);
+//	return 0;
+//}
 
 bool read_text(
 	const std::string &filename, std::string &content)

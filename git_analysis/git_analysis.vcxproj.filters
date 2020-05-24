@@ -24,12 +24,24 @@
     <ClCompile Include="platform_os\platform_os\WindowsPlatform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getopt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lex.yy.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform_os\platform_os\PlatformOS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform_os\platform_os\WindowsPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getopt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unistd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
