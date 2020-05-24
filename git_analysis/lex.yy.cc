@@ -442,9 +442,10 @@ static const flex_int16_t yy_chk[158] =
   #include <string>
   #include "unistd.h"
   #include <fstream>
+  #include "git_log_parser.tab.hh"
   using namespace std;
   //extern int yylex();
-#line 447 "lex.yy.cc"
+#line 448 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -1631,10 +1632,21 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
+void yy::parser::error(const std::string& msg) {
+
+}
+yyFlexLexer *lexer_ptr{};
+
+int yylex(yy::parser::semantic_type *val) {
+  return lexer_ptr->yylex();
+}
+
 int main(int argc, char** argv) {
   std::string git_log_filename{ "C:\\development\\nce\\vscxggb" };
   std::ifstream log_in {git_log_filename.c_str()};
   yyFlexLexer lexer{ log_in, std::cout};
+  lexer_ptr = &lexer;
+
   while (lexer.yylex())
   {
 
