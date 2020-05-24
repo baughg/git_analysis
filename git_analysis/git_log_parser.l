@@ -12,10 +12,14 @@
 %option noline
 %option c++
 %%
+"Author" { std::cout << "Found AUTHOR " << yytext << std::endl;}
+"Date" { std::cout << "Found DATE " << yytext << std::endl;}
+"commit" { std::cout << "Found COMMIT " << yytext << std::endl;}
 [ \t\n]         ;
 [0-9]+\.[0-9]+  { cout << "Found a floating-point number:" << yytext << endl; }
 [0-9]+          { cout << "Found an integer:" << yytext << endl; }
 [a-zA-Z0-9]+    { cout << "Found a string: " << yytext << endl; }
+[a-z0-9 _]+@[a-z0-9]+.[a-z]+ { std::cout << "email: " << yytext << std::endl; }
 %%
 int main(int argc, char** argv) {
   std::string git_log_filename{ "C:\\development\\nce\\vscxggb" };
