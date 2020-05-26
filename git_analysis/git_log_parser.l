@@ -13,14 +13,13 @@
 %option noline
 %option c++
 %%
-"Author" { std::cout << "Found AUTHOR " << yytext << std::endl;}
-"Date" { std::cout << "Found DATE " << yytext << std::endl;}
-"commit" { std::cout << "Found COMMIT " << yytext << std::endl;}
+"Author" { std::cout << "Found AUTHOR " << yytext << std::endl; return yy::parser::token::GL_AUTHOR; }
+"Date" { std::cout << "Found DATE " << yytext << std::endl; return yy::parser::token::GL_DATE;}
+"commit" { std::cout << "Found COMMIT " << yytext << std::endl; return yy::parser::token::GL_COMMIT;}
 [ \t\n]         ;
-[0-9]+\.[0-9]+  { cout << "Found a floating-point number:" << yytext << endl; }
-[0-9]+          { cout << "Found an integer:" << yytext << endl; }
-[a-zA-Z0-9]+    { cout << "Found a string: " << yytext << endl; }
-[a-z0-9 _]+@[a-z0-9]+.[a-z]+ { std::cout << "email: " << yytext << std::endl; }
+[0-9]+          { cout << "Found an integer:" << yytext << endl; return yy::parser::token::GL_NUMBER;}
+[a-zA-Z0-9]+    { cout << "Found a string: " << yytext << endl; return yy::parser::token::GL_STRING;}
+[a-z0-9 _]+@[a-z0-9]+.[a-z]+ { std::cout << "email: " << yytext << std::endl; return yy::parser::token::GL_EMAIL;}
 %%
 
 yyFlexLexer *lexer_ptr{};

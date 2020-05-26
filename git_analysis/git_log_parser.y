@@ -18,6 +18,7 @@
   char *sval;
 }
 
+%token GL_AUTHOR GL_DATE GL_COMMIT GL_NUMBER GL_STRING GL_EMAIL   
 // Define the "terminal symbol" token types I'm going to use (in CAPS
 // by convention), and associate each with a field of the %union:
 %token <ival> INT

@@ -147,9 +147,15 @@ namespace yy {
     {
       enum yytokentype
       {
-        INT = 258,
-        FLOAT = 259,
-        STRING = 260
+        GL_AUTHOR = 258,
+        GL_DATE = 259,
+        GL_COMMIT = 260,
+        GL_NUMBER = 261,
+        GL_STRING = 262,
+        GL_EMAIL = 263,
+        INT = 264,
+        FLOAT = 265,
+        STRING = 266
       };
     };
 
@@ -453,7 +459,7 @@ namespace yy {
       yyfinal_ = 8, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 6  ///< Number of tokens.
+      yyntokens_ = 12  ///< Number of tokens.
     };
 
 
@@ -462,7 +468,7 @@ namespace yy {
 
 
 } // yy
-#line 466 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 472 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

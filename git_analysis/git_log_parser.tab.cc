@@ -42,7 +42,7 @@
   #include <fstream>
   using namespace std;
  
-  
+ 
   extern int yyparse();
 
 #line 49 "git_log_parser.tab.cc" // lalr1.cc:404
@@ -56,7 +56,7 @@
 # endif
 
 #include "git_log_parser.tab.hh"
-extern int yylex(yy::parser::semantic_type *val);
+  extern int yylex(yy::parser::semantic_type *val);
 // User implementation prologue.
 
 #line 63 "git_log_parser.tab.cc" // lalr1.cc:412
@@ -549,7 +549,7 @@ namespace yy {
           switch (yyn)
             {
   case 2:
-#line 32 "git_log_parser.y" // lalr1.cc:859
+#line 33 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found an int: " << (yystack_[1].value.ival) << endl;
     }
@@ -557,7 +557,7 @@ namespace yy {
     break;
 
   case 3:
-#line 35 "git_log_parser.y" // lalr1.cc:859
+#line 36 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a float: " << (yystack_[1].value.fval) << endl;
     }
@@ -565,7 +565,7 @@ namespace yy {
     break;
 
   case 4:
-#line 38 "git_log_parser.y" // lalr1.cc:859
+#line 39 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a string: " << (yystack_[1].value.sval) << endl; free((yystack_[1].value.sval));
     }
@@ -573,7 +573,7 @@ namespace yy {
     break;
 
   case 5:
-#line 41 "git_log_parser.y" // lalr1.cc:859
+#line 42 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found an int: " << (yystack_[0].value.ival) << endl;
     }
@@ -581,7 +581,7 @@ namespace yy {
     break;
 
   case 6:
-#line 44 "git_log_parser.y" // lalr1.cc:859
+#line 45 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a float: " << (yystack_[0].value.fval) << endl;
     }
@@ -589,7 +589,7 @@ namespace yy {
     break;
 
   case 7:
-#line 47 "git_log_parser.y" // lalr1.cc:859
+#line 48 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a string: " << (yystack_[0].value.sval) << endl; free((yystack_[0].value.sval));
     }
@@ -758,14 +758,14 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -4;
+  const signed char parser::yypact_ninf_ = -10;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -3,    -3,    -3,    -3,     6,    -4,    -4,    -4,    -4
+      -9,    -9,    -9,    -9,     6,   -10,   -10,   -10,   -10
   };
 
   const unsigned char
@@ -777,7 +777,7 @@ namespace yy {
   const signed char
   parser::yypgoto_[] =
   {
-      -4,     2
+     -10,     2
   };
 
   const signed char
@@ -795,19 +795,19 @@ namespace yy {
   const unsigned char
   parser::yycheck_[] =
   {
-       3,     4,     5,     1,     2,     3,     0
+       9,    10,    11,     1,     2,     3,     0
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     3,     4,     5,     7,     7,     7,     7,     0
+       0,     9,    10,    11,    13,    13,    13,    13,     0
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,     6,     7,     7,     7,     7,     7,     7
+       0,    12,    13,    13,    13,    13,    13,    13
   };
 
   const unsigned char
@@ -823,15 +823,16 @@ namespace yy {
   const char*
   const parser::yytname_[] =
   {
-  "$end", "error", "$undefined", "INT", "FLOAT", "STRING", "$accept",
-  "snazzle", YY_NULLPTR
+  "$end", "error", "$undefined", "GL_AUTHOR", "GL_DATE", "GL_COMMIT",
+  "GL_NUMBER", "GL_STRING", "GL_EMAIL", "INT", "FLOAT", "STRING",
+  "$accept", "snazzle", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    32,    32,    35,    38,    41,    44,    47
+       0,    33,    33,    36,    39,    42,    45,    48
   };
 
   // Print the state stack on the debug stream.
@@ -898,9 +899,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5
+       5,     6,     7,     8,     9,    10,    11
     };
-    const unsigned int user_token_number_max_ = 260;
+    const unsigned int user_token_number_max_ = 266;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -913,5 +914,5 @@ namespace yy {
 
 
 } // yy
-#line 917 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 51 "git_log_parser.y" // lalr1.cc:1168
+#line 918 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 52 "git_log_parser.y" // lalr1.cc:1168
