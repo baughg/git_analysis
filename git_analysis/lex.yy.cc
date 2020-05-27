@@ -437,7 +437,8 @@ static const flex_int16_t yy_chk[121] =
   #include "git_log_parser.tab.hh"
   using namespace std;
   //extern int yylex();
-#line 440 "lex.yy.cc"
+  yy::parser::semantic_type *yyval {};
+#line 441 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -648,7 +649,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-{ cout << "Found a string: " << yytext << endl; return yy::parser::token::GL_STRING;}
+{ 
+  yyval->sval = new char[strlen(yytext) +1]; 
+  sprintf(yyval->sval,"%s",yytext);
+  cout << "Found a string: " << yytext << endl; 
+  return yy::parser::token::GL_STRING;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
@@ -1623,6 +1628,7 @@ void yyfree (void * ptr )
 yyFlexLexer *lexer_ptr{};
 
 int yylex(yy::parser::semantic_type *val) {
+  yyval = val;
   return lexer_ptr->yylex();
 }
 

@@ -147,15 +147,12 @@ namespace yy {
     {
       enum yytokentype
       {
-        GL_AUTHOR = 258,
-        GL_DATE = 259,
-        GL_COMMIT = 260,
-        GL_NUMBER = 261,
+        GL_NUMBER = 258,
+        GL_AUTHOR = 259,
+        GL_DATE = 260,
+        GL_COMMIT = 261,
         GL_STRING = 262,
-        GL_EMAIL = 263,
-        INT = 264,
-        FLOAT = 265,
-        STRING = 266
+        GL_EMAIL = 263
       };
     };
 
@@ -454,12 +451,12 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 6,     ///< Last index in yytable_.
+      yylast_ = 9,     ///< Last index in yytable_.
       yynnts_ = 2,  ///< Number of nonterminal symbols.
-      yyfinal_ = 8, ///< Termination state number.
+      yyfinal_ = 11, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 12  ///< Number of tokens.
+      yyntokens_ = 9  ///< Number of tokens.
     };
 
 
@@ -468,7 +465,7 @@ namespace yy {
 
 
 } // yy
-#line 472 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 469 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

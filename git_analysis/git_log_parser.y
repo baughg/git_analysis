@@ -18,35 +18,39 @@
   char *sval;
 }
 
-%token GL_AUTHOR GL_DATE GL_COMMIT GL_NUMBER GL_STRING GL_EMAIL   
+//%token GL_AUTHOR GL_DATE GL_COMMIT GL_NUMBER GL_STRING GL_EMAIL   
 // Define the "terminal symbol" token types I'm going to use (in CAPS
 // by convention), and associate each with a field of the %union:
-%token <ival> INT
-%token <fval> FLOAT
-%token <sval> STRING
+%token <ival> GL_NUMBER
+%token <sval> GL_AUTHOR
+%token <sval> GL_DATE
+%token GL_COMMIT
+%token <sval> GL_STRING
+%token <sval> GL_EMAIL
+
 
 %%
 // This is the actual grammar that bison will parse, but for right now it's just
 // something silly to echo to the screen what bison gets from flex.  We'll
 // make a real one shortly:
 snazzle:
-  INT snazzle      {
-      cout << "bison found an int: " << $1 << endl;
+  GL_AUTHOR snazzle      {
+      cout << "bison found an author: " << $1 << endl;
     }
-  | FLOAT snazzle  {
-      cout << "bison found a float: " << $1 << endl;
+  | GL_DATE snazzle  {
+      cout << "bison found a date: " << $1 << endl;
     }
-  | STRING snazzle {
-      cout << "bison found a string: " << $1 << endl; free($1);
+  | GL_COMMIT snazzle {
+      cout << "bison found a commit: " << endl; 
     }
-  | INT            {
-      cout << "bison found an int: " << $1 << endl;
+  | GL_NUMBER            {
+      cout << "bison found an number: " << $1 << endl;
     }
-  | FLOAT          {
-      cout << "bison found a float: " << $1 << endl;
+  | GL_STRING          {
+      cout << "bison found a string: " << $1 << endl;
     }
-  | STRING         {
-      cout << "bison found a string: " << $1 << endl; free($1);
+  | GL_EMAIL         {
+      cout << "bison found an email: " << $1 << endl; 
     }
   ;
 %%
