@@ -6,7 +6,7 @@
   #include "unistd.h"
   #include <fstream>
   using namespace std;
- 
+ #include "git_log_parser.tab.hh"
   extern int yylex(yy::parser::semantic_type *val);
   extern int yyparse();
 %}

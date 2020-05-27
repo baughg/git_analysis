@@ -28,16 +28,25 @@ int yylex(yy::parser::semantic_type *val) {
   return lexer_ptr->yylex();
 }
 
+void yy::parser::error (const std::string& msg)
+{
+
+}
+
 int main(int argc, char** argv) {
   std::string git_log_filename{ "C:\\development\\nce\\vscxggb" };
   std::ifstream log_in {git_log_filename.c_str()};
   yyFlexLexer lexer{ log_in, std::cout};
   lexer_ptr = &lexer;
 
-  while (lexer.yylex())
-  {
+  yy::parser parser{};
 
-  }
+  parser.parse();
+
+  // while (lexer.yylex())
+  // {
+
+  // }
   log_in.close();
 
   return 0;

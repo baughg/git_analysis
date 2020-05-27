@@ -41,8 +41,8 @@
   #include "unistd.h"
   #include <fstream>
   using namespace std;
- 
- 
+ #include "git_log_parser.tab.hh"
+  extern int yylex(yy::parser::semantic_type *val);
   extern int yyparse();
 
 #line 49 "git_log_parser.tab.cc" // lalr1.cc:404
@@ -56,7 +56,7 @@
 # endif
 
 #include "git_log_parser.tab.hh"
-  extern int yylex(yy::parser::semantic_type *val);
+
 // User implementation prologue.
 
 #line 63 "git_log_parser.tab.cc" // lalr1.cc:412
