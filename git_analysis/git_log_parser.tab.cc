@@ -45,7 +45,33 @@
   extern int yylex(yy::parser::semantic_type *val);
   extern int yyparse();
 
-#line 49 "git_log_parser.tab.cc" // lalr1.cc:404
+  /*snazzle:
+  GL_AUTHOR snazzle      {
+      cout << "bison found an author: " << $1 << endl;
+      delete[] $1;
+    }
+  | GL_DATE snazzle  {
+      cout << "bison found a date: " << $1 << endl;
+      delete[] $1;
+    }
+  | GL_COMMIT snazzle {
+      cout << "bison found a commit: " << $1<< endl; 
+      delete[] $1;
+    }
+  | GL_NUMBER            {
+      cout << "bison found an number: " << $1 << endl;
+    }
+  | GL_STRING          {
+      cout << "bison found a string: " << $1 << endl;
+      delete[] $1;
+    }
+  | GL_EMAIL         {
+      cout << "bison found an email: " << $1 << endl; 
+      delete[] $1;
+    }
+  ;*/
+
+#line 75 "git_log_parser.tab.cc" // lalr1.cc:404
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -59,7 +85,7 @@
 
 // User implementation prologue.
 
-#line 63 "git_log_parser.tab.cc" // lalr1.cc:412
+#line 89 "git_log_parser.tab.cc" // lalr1.cc:412
 
 
 #ifndef YY_
@@ -126,7 +152,7 @@
 
 
 namespace yy {
-#line 130 "git_log_parser.tab.cc" // lalr1.cc:479
+#line 156 "git_log_parser.tab.cc" // lalr1.cc:479
 
   /// Build a parser object.
   parser::parser ()
@@ -548,61 +574,8 @@ namespace yy {
         {
           switch (yyn)
             {
-  case 2:
-#line 36 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found an author: " << (yystack_[1].value.sval) << endl;
-      delete[] (yystack_[1].value.sval);
-    }
-#line 558 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
 
-  case 3:
-#line 40 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found a date: " << (yystack_[1].value.sval) << endl;
-      delete[] (yystack_[1].value.sval);
-    }
-#line 567 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
-
-  case 4:
-#line 44 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found a commit: " << (yystack_[1].value.sval)<< endl; 
-      delete[] (yystack_[1].value.sval);
-    }
-#line 576 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
-
-  case 5:
-#line 48 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found an number: " << (yystack_[0].value.ival) << endl;
-    }
-#line 584 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
-
-  case 6:
-#line 51 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found a string: " << (yystack_[0].value.sval) << endl;
-      delete[] (yystack_[0].value.sval);
-    }
-#line 593 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
-
-  case 7:
-#line 55 "git_log_parser.y" // lalr1.cc:859
-    {
-      cout << "bison found an email: " << (yystack_[0].value.sval) << endl; 
-      delete[] (yystack_[0].value.sval);
-    }
-#line 602 "git_log_parser.tab.cc" // lalr1.cc:859
-    break;
-
-
-#line 606 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 579 "git_log_parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -763,65 +736,65 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -4;
+  const signed char parser::yypact_ninf_ = -7;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -3,    -4,    -3,    -3,    -3,    -4,    -4,     9,    -4,    -4,
-      -4,    -4
+      -4,    -6,     3,    -4,    -7,    -6,     0,    -7,    -7,    -7,
+      -6,    -2,    -6,    -7
   };
 
   const unsigned char
   parser::yydefact_[] =
   {
-       0,     5,     0,     0,     0,     6,     7,     0,     2,     3,
-       4,     1
+       0,     0,     0,     6,     2,     3,     0,     1,     7,     4,
+       0,     0,     0,     5
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-      -4,     4
+      -7,    -7,    -5,    -7,     5
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     7
+      -1,     2,     6,     3,     4
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-       1,     2,     3,     4,     5,     6,     8,     9,    10,    11
+       9,     5,     1,     7,    10,    11,    12,    13,     8
   };
 
   const unsigned char
   parser::yycheck_[] =
   {
-       3,     4,     5,     6,     7,     8,     2,     3,     4,     0
+       5,     7,     6,     0,     4,    10,     8,    12,     3
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     3,     4,     5,     6,     7,     8,    10,    10,    10,
-      10,     0
+       0,     6,    10,    12,    13,     7,    11,     0,    13,    11,
+       4,    11,     8,    11
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,     9,    10,    10,    10,    10,    10,    10
+       0,     9,    10,    11,    11,    12,    13,    13
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
-       0,     2,     2,     2,     2,     1,     1,     1
+       0,     2,     1,     1,     2,     6,     1,     2
   };
 
 
@@ -832,14 +805,15 @@ namespace yy {
   const parser::yytname_[] =
   {
   "$end", "error", "$undefined", "GL_NUMBER", "GL_AUTHOR", "GL_DATE",
-  "GL_COMMIT", "GL_STRING", "GL_EMAIL", "$accept", "snazzle", YY_NULLPTR
+  "GL_COMMIT", "GL_STRING", "GL_EMAIL", "$accept", "prog", "string_list",
+  "commit_entry", "commit_entries", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    36,    36,    40,    44,    48,    51,    55
+       0,    58,    58,    60,    61,    63,    65,    66
   };
 
   // Print the state stack on the debug stream.
@@ -921,5 +895,5 @@ namespace yy {
 
 
 } // yy
-#line 925 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 60 "git_log_parser.y" // lalr1.cc:1168
+#line 899 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 68 "git_log_parser.y" // lalr1.cc:1168

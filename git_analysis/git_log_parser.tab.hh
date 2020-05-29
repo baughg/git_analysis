@@ -124,7 +124,7 @@ namespace yy {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 15 "git_log_parser.y" // lalr1.cc:377
+    #line 41 "git_log_parser.y" // lalr1.cc:377
 
   int ival;
   char* sval;
@@ -450,9 +450,9 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 9,     ///< Last index in yytable_.
-      yynnts_ = 2,  ///< Number of nonterminal symbols.
-      yyfinal_ = 11, ///< Termination state number.
+      yylast_ = 8,     ///< Last index in yytable_.
+      yynnts_ = 5,  ///< Number of nonterminal symbols.
+      yyfinal_ = 7, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 9  ///< Number of tokens.

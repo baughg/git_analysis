@@ -18,10 +18,11 @@
 %option noline
 %option c++
 %%
+
 "Author" { get_string(yytext); return yy::parser::token::GL_AUTHOR; }
 "Date" { get_string(yytext); return yy::parser::token::GL_DATE;}
 "commit" { get_string(yytext); return yy::parser::token::GL_COMMIT;  }
-[ \t\n]         ;
+[ \t\n\r]        {} ;
 [0-9]+          { yyval->ival = atoi(yytext); return yy::parser::token::GL_NUMBER;}
 [a-zA-Z0-9]+    { get_string(yytext); return yy::parser::token::GL_STRING;}
 [a-z0-9 _]+@[a-z0-9]+.[a-z]+ { get_string(yytext); return yy::parser::token::GL_EMAIL;}
