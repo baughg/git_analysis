@@ -67,8 +67,7 @@ commit_entry :  GL_COMMIT
                 GL_DATE space_list 
                 string_list 
                 number_list GL_TIME
-                number_list space_list
-                GL_TIME_ZONE string_list
+                number_list GL_TIME_ZONE string_list
                   ;  
 commit_entries :  commit_entry 
                   | commit_entry commit_entries

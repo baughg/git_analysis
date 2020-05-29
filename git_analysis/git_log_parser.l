@@ -22,7 +22,7 @@
 "Author" { get_string(yytext); return yy::parser::token::GL_AUTHOR; }
 "Date" { get_string(yytext); return yy::parser::token::GL_DATE;}
 "commit" { get_string(yytext); return yy::parser::token::GL_COMMIT;  }
-[ \t\n\r+]        {} 
+[ \t\n\r]        {} 
 [<>:]        { return yy::parser::token::GL_SPACE;} 
 [0-9]+          { yyval->ival = atoi(yytext); return yy::parser::token::GL_NUMBER;}
 [a-zA-Z0-9]+    { get_string(yytext); return yy::parser::token::GL_STRING;}
