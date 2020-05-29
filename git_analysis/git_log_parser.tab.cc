@@ -574,14 +574,20 @@ namespace yy {
         {
           switch (yyn)
             {
-  case 3:
-#line 60 "git_log_parser.y" // lalr1.cc:859
+  case 4:
+#line 59 "git_log_parser.y" // lalr1.cc:859
     {std::cout << "str " << (yystack_[0].value.sval) << std::endl;}
 #line 581 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
+  case 5:
+#line 60 "git_log_parser.y" // lalr1.cc:859
+    {std::cout << "str_lst " << (yystack_[1].value.sval) << std::endl;}
+#line 587 "git_log_parser.tab.cc" // lalr1.cc:859
+    break;
 
-#line 585 "git_log_parser.tab.cc" // lalr1.cc:859
+
+#line 591 "git_log_parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -742,65 +748,74 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -7;
+  const signed char parser::yypact_ninf_ = -20;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -4,    -6,     3,    -4,    -7,    -6,     0,    -7,    -7,    -7,
-      -6,    -2,    -6,    -7
+      -3,     2,    10,    -3,   -20,     2,     7,   -20,   -20,   -20,
+       1,     1,     2,   -20,     1,     5,     1,    11,     1,     2,
+      14,    14,     9,   -20,    14,     1,    13,     2,   -20
   };
 
   const unsigned char
   parser::yydefact_[] =
   {
-       0,     0,     0,     6,     2,     3,     0,     1,     7,     4,
-       0,     0,     0,     5
+       2,     0,     0,     7,     3,     4,     0,     1,     8,     5,
+       0,    11,     0,    12,     0,     0,     0,     0,     0,     0,
+       0,     9,     0,    10,     0,     0,     0,     0,     6
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-      -7,    -7,    -5,    -7,     5
+     -20,   -20,    -5,   -20,    16,   -19,   -10
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     2,     6,     3,     4
+      -1,     2,     6,     3,     4,    22,    12
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-       9,     5,     1,     7,    10,    11,    12,    13,     8
+       9,    13,    23,     1,    15,    25,    17,    14,    19,     5,
+       7,    10,    11,    16,    20,    26,    18,    21,    24,     8,
+       0,     0,    28,    27
   };
 
-  const unsigned char
+  const signed char
   parser::yycheck_[] =
   {
-       5,     7,     6,     0,     4,    10,     8,    12,     3
+       5,    11,    21,     6,    14,    24,    16,    12,    18,     7,
+       0,     4,    11,     8,    19,    25,     5,     3,     9,     3,
+      -1,    -1,    27,    10
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     6,    10,    12,    13,     7,    11,     0,    13,    11,
-       4,    11,     8,    11
+       0,     6,    13,    15,    16,     7,    14,     0,    16,    14,
+       4,    11,    18,    18,    14,    18,     8,    18,     5,    18,
+      14,     3,    17,    17,     9,    17,    18,    10,    14
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,     9,    10,    11,    11,    12,    13,    13
+       0,    12,    13,    13,    14,    14,    15,    16,    16,    17,
+      17,    18,    18
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
-       0,     2,     1,     1,     2,     6,     1,     2
+       0,     2,     0,     1,     1,     2,    17,     1,     2,     1,
+       2,     1,     2
   };
 
 
@@ -811,15 +826,17 @@ namespace yy {
   const parser::yytname_[] =
   {
   "$end", "error", "$undefined", "GL_NUMBER", "GL_AUTHOR", "GL_DATE",
-  "GL_COMMIT", "GL_STRING", "GL_EMAIL", "$accept", "prog", "string_list",
-  "commit_entry", "commit_entries", YY_NULLPTR
+  "GL_COMMIT", "GL_STRING", "GL_EMAIL", "GL_TIME", "GL_TIME_ZONE",
+  "GL_SPACE", "$accept", "prog", "string_list", "commit_entry",
+  "commit_entries", "number_list", "space_list", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    58,    58,    60,    61,    63,    65,    66
+       0,    57,    57,    57,    59,    60,    62,    73,    74,    77,
+      78,    81,    82
   };
 
   // Print the state stack on the debug stream.
@@ -886,9 +903,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8
+       5,     6,     7,     8,     9,    10,    11
     };
-    const unsigned int user_token_number_max_ = 263;
+    const unsigned int user_token_number_max_ = 266;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -901,5 +918,5 @@ namespace yy {
 
 
 } // yy
-#line 905 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 68 "git_log_parser.y" // lalr1.cc:1168
+#line 922 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 84 "git_log_parser.y" // lalr1.cc:1168

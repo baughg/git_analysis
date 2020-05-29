@@ -43,26 +43,42 @@
   char* sval;
 }
 
-//%token GL_AUTHOR GL_DATE GL_COMMIT GL_NUMBER GL_STRING GL_EMAIL   
-// Define the "terminal symbol" token types I'm going to use (in CAPS
-// by convention), and associate each with a field of the %union:
 %token <ival> GL_NUMBER
 %token <sval> GL_AUTHOR
 %token <sval> GL_DATE
 %token <sval> GL_COMMIT
 %token <sval> GL_STRING
 %token <sval> GL_EMAIL
-
+%token <sval> GL_TIME
+%token <sval> GL_TIME_ZONE
+%token GL_SPACE
 
 %%
-prog : commit_entries 
+prog :  | commit_entries 
                   ;
 string_list : GL_STRING {std::cout << "str " << $1 << std::endl;}
-                  | GL_STRING string_list
+                  | GL_STRING string_list {std::cout << "str_lst " << $1 << std::endl;}
                   ; 
-commit_entry : GL_COMMIT string_list GL_AUTHOR string_list GL_EMAIL string_list
+commit_entry :  GL_COMMIT 
+                string_list 
+                GL_AUTHOR space_list 
+                string_list space_list 
+                GL_EMAIL space_list 
+                GL_DATE space_list 
+                string_list 
+                number_list GL_TIME
+                number_list space_list
+                GL_TIME_ZONE string_list
                   ;  
 commit_entries :  commit_entry 
                   | commit_entry commit_entries
                   ; 
+
+number_list : GL_NUMBER 
+                  | GL_NUMBER number_list
+                  ;
+
+space_list : GL_SPACE 
+                  | GL_SPACE space_list
+                  ;
 %%
