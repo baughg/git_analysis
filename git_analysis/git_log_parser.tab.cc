@@ -561,44 +561,48 @@ namespace yy {
 #line 40 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a date: " << (yystack_[1].value.sval) << endl;
+      delete[] (yystack_[1].value.sval);
     }
-#line 566 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 567 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
-#line 43 "git_log_parser.y" // lalr1.cc:859
+#line 44 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a commit: " << (yystack_[1].value.sval)<< endl; 
+      delete[] (yystack_[1].value.sval);
     }
-#line 574 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 576 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
-#line 46 "git_log_parser.y" // lalr1.cc:859
+#line 48 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found an number: " << (yystack_[0].value.ival) << endl;
     }
-#line 582 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 584 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
   case 6:
-#line 49 "git_log_parser.y" // lalr1.cc:859
+#line 51 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found a string: " << (yystack_[0].value.sval) << endl;
+      delete[] (yystack_[0].value.sval);
     }
-#line 590 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 593 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
   case 7:
-#line 52 "git_log_parser.y" // lalr1.cc:859
+#line 55 "git_log_parser.y" // lalr1.cc:859
     {
       cout << "bison found an email: " << (yystack_[0].value.sval) << endl; 
+      delete[] (yystack_[0].value.sval);
     }
-#line 598 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 602 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 602 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 606 "git_log_parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -835,7 +839,7 @@ namespace yy {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    36,    36,    40,    43,    46,    49,    52
+       0,    36,    36,    40,    44,    48,    51,    55
   };
 
   // Print the state stack on the debug stream.
@@ -917,5 +921,5 @@ namespace yy {
 
 
 } // yy
-#line 921 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 56 "git_log_parser.y" // lalr1.cc:1168
+#line 925 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 60 "git_log_parser.y" // lalr1.cc:1168

@@ -39,18 +39,22 @@ snazzle:
     }
   | GL_DATE snazzle  {
       cout << "bison found a date: " << $1 << endl;
+      delete[] $1;
     }
   | GL_COMMIT snazzle {
       cout << "bison found a commit: " << $1<< endl; 
+      delete[] $1;
     }
   | GL_NUMBER            {
       cout << "bison found an number: " << $1 << endl;
     }
   | GL_STRING          {
       cout << "bison found a string: " << $1 << endl;
+      delete[] $1;
     }
   | GL_EMAIL         {
       cout << "bison found an email: " << $1 << endl; 
+      delete[] $1;
     }
   ;
 %%
