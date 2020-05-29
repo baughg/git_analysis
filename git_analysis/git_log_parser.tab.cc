@@ -574,8 +574,14 @@ namespace yy {
         {
           switch (yyn)
             {
+  case 3:
+#line 60 "git_log_parser.y" // lalr1.cc:859
+    {std::cout << "str " << (yystack_[0].value.sval) << std::endl;}
+#line 581 "git_log_parser.tab.cc" // lalr1.cc:859
+    break;
 
-#line 579 "git_log_parser.tab.cc" // lalr1.cc:859
+
+#line 585 "git_log_parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -895,5 +901,5 @@ namespace yy {
 
 
 } // yy
-#line 899 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 905 "git_log_parser.tab.cc" // lalr1.cc:1167
 #line 68 "git_log_parser.y" // lalr1.cc:1168

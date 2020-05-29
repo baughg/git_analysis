@@ -57,9 +57,9 @@
 %%
 prog : commit_entries 
                   ;
-string_list : GL_STRING 
+string_list : GL_STRING {std::cout << "str " << $1 << std::endl;}
                   | GL_STRING string_list
-                  ;
+                  ; 
 commit_entry : GL_COMMIT string_list GL_AUTHOR string_list GL_EMAIL string_list
                   ;  
 commit_entries :  commit_entry 
