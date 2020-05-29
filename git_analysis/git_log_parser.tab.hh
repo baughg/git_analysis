@@ -127,10 +127,9 @@ namespace yy {
     #line 15 "git_log_parser.y" // lalr1.cc:377
 
   int ival;
-  float fval;
-  char *sval;
+  char* sval;
 
-#line 134 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 133 "git_log_parser.tab.hh" // lalr1.cc:377
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -465,7 +464,7 @@ namespace yy {
 
 
 } // yy
-#line 469 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 468 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

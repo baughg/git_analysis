@@ -438,7 +438,11 @@ static const flex_int16_t yy_chk[121] =
   using namespace std;
   //extern int yylex();
   yy::parser::semantic_type *yyval {};
-#line 441 "lex.yy.cc"
+  void get_string(char* yytext){
+    yyval->sval = new char[strlen(yytext)+1];
+    sprintf(yyval->sval,"%s",yytext);  
+  }
+#line 445 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -628,15 +632,15 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-{ std::cout << "Found AUTHOR " << yytext << std::endl; return yy::parser::token::GL_AUTHOR; }
+{ get_string(yytext); return yy::parser::token::GL_AUTHOR; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-{ std::cout << "Found DATE " << yytext << std::endl; return yy::parser::token::GL_DATE;}
+{ get_string(yytext); return yy::parser::token::GL_DATE;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-{ std::cout << "Found COMMIT " << yytext << std::endl; return yy::parser::token::GL_COMMIT;}
+{ get_string(yytext); return yy::parser::token::GL_COMMIT;  }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
@@ -645,19 +649,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-{ cout << "Found an integer:" << yytext << endl; return yy::parser::token::GL_NUMBER;}
+{ yyval->ival = atoi(yytext); return yy::parser::token::GL_NUMBER;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-{ 
-  yyval->sval = new char[strlen(yytext) +1]; 
-  sprintf(yyval->sval,"%s",yytext);
-  cout << "Found a string: " << yytext << endl; 
-  return yy::parser::token::GL_STRING;}
+{ get_string(yytext); return yy::parser::token::GL_STRING;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-{ std::cout << "email: " << yytext << std::endl; return yy::parser::token::GL_EMAIL;}
+{ get_string(yytext); return yy::parser::token::GL_EMAIL;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP

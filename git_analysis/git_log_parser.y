@@ -14,8 +14,7 @@
 
 %union {
   int ival;
-  float fval;
-  char *sval;
+  char* sval;
 }
 
 //%token GL_AUTHOR GL_DATE GL_COMMIT GL_NUMBER GL_STRING GL_EMAIL   
@@ -24,7 +23,7 @@
 %token <ival> GL_NUMBER
 %token <sval> GL_AUTHOR
 %token <sval> GL_DATE
-%token GL_COMMIT
+%token <sval> GL_COMMIT
 %token <sval> GL_STRING
 %token <sval> GL_EMAIL
 
@@ -36,12 +35,13 @@
 snazzle:
   GL_AUTHOR snazzle      {
       cout << "bison found an author: " << $1 << endl;
+      delete[] $1;
     }
   | GL_DATE snazzle  {
       cout << "bison found a date: " << $1 << endl;
     }
   | GL_COMMIT snazzle {
-      cout << "bison found a commit: " << endl; 
+      cout << "bison found a commit: " << $1<< endl; 
     }
   | GL_NUMBER            {
       cout << "bison found an number: " << $1 << endl;
