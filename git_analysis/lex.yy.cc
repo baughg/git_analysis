@@ -451,9 +451,21 @@ static const flex_int16_t yy_chk[151] =
     sprintf(yyval->sval,"%s",yytext);  
   }
 
-  void create_git_log_node(const GitLogNode::NodeType &type, char* yytext = NULL){
+  GB::GitLogNode * end_node_ptr{};
+
+  void create_git_log_node(const GitLogNode::NodeType &type, char* yytext = NULL, int num = 0){
     if(!yytext) {
       yyval->node_ptr = new GitLogNode(type);
+    }
+    else if(type == GitLogNode::NodeType::number){
+      yyval->node_ptr = new GitLogNode(GitLogNode::NodeType::number);
+      yyval->node_ptr->set_number(num);
+    }
+    else if(type == GitLogNode::NodeType::email || 
+    type == GitLogNode::NodeType::time ||
+    type == GitLogNode::NodeType::time_zone){
+      yyval->node_ptr = new GitLogNode(type);
+      yyval->node_ptr->set_text(yytext);
     }
     else {
       yyval->node_ptr = new GitLogNode(yytext);
@@ -464,10 +476,8 @@ static const flex_int16_t yy_chk[151] =
     }
 
     end_node_ptr =  yyval->node_ptr;    
-  }
-
-  GB::GitLogNode * end_node_ptr{};
-#line 470 "lex.yy.cc"
+  }  
+#line 480 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -657,11 +667,17 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_AUTHOR; }
+{ 
+  create_git_log_node(GitLogNode::NodeType::author);  
+  return yy::parser::token::GL_AUTHOR; 
+  }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_DATE;}
+{ 
+  create_git_log_node(GitLogNode::NodeType::date); 
+  return yy::parser::token::GL_DATE;
+  }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -681,23 +697,38 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-{ yyval->ival = atoi(yytext); return yy::parser::token::GL_NUMBER;}
+{ 
+  create_git_log_node(GitLogNode::NodeType::number,NULL,atoi(yytext));  
+  return yy::parser::token::GL_NUMBER;
+  }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_STRING;}
+{
+  create_git_log_node(GitLogNode::NodeType::text,yytext);   
+  get_string(yytext); return yy::parser::token::GL_STRING;
+  }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_EMAIL;}
+{ 
+  create_git_log_node(GitLogNode::NodeType::email,yytext);
+  return yy::parser::token::GL_EMAIL;
+  }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_TIME;}
+{ 
+  create_git_log_node(GitLogNode::NodeType::time,yytext);
+  return yy::parser::token::GL_TIME;
+  }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_TIME_ZONE;}
+{ 
+  create_git_log_node(GitLogNode::NodeType::time_zone,yytext);
+  return yy::parser::token::GL_TIME_ZONE;
+  }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP

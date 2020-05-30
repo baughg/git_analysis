@@ -23,3 +23,7 @@ void GitLogNode::set_number(const int &num) {
 	node_num_ = num;
 }
 
+void GitLogNode::set_text(const char *text_str) {
+	node_text_ = std::move(std::string{ text_str });
+}
+

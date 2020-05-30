@@ -11,6 +11,7 @@ namespace GB {
 		GitLogNode(NodeType type);
 		void set_next_node(GitLogNode* node_ptr);
 		void set_number(const int &num);
+		void set_text(const char *text_str);
 	private:
 		std::string node_text_{};
 		int node_num_{ };
