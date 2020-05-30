@@ -60,8 +60,8 @@
 %%
 prog :  | commit_entries 
                   ;
-string_list : GL_STRING {std::cout << "str " << $1 << std::endl;}
-                  | GL_STRING string_list {std::cout << "str_lst " << $1 << std::endl;}
+string_list : GL_STRING
+                  | GL_STRING string_list
                   ; 
 commit_entry :  GL_COMMIT 
                 string_list 

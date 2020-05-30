@@ -443,13 +443,31 @@ static const flex_int16_t yy_chk[151] =
   #include <fstream>
   #include "git_log_parser.tab.hh"
   using namespace std;
+  using namespace GB;
   //extern int yylex();
   yy::parser::semantic_type *yyval {};
   void get_string(char* yytext){
     yyval->sval = new char[strlen(yytext)+1];
     sprintf(yyval->sval,"%s",yytext);  
   }
-#line 452 "lex.yy.cc"
+
+  void create_git_log_node(const GitLogNode::NodeType &type, char* yytext = NULL){
+    if(!yytext) {
+      yyval->node_ptr = new GitLogNode(type);
+    }
+    else {
+      yyval->node_ptr = new GitLogNode(yytext);
+    }
+
+    if(end_node_ptr){
+      yyval->node_ptr->set_next_node(end_node_ptr);
+    }
+
+    end_node_ptr =  yyval->node_ptr;    
+  }
+
+  GB::GitLogNode * end_node_ptr{};
+#line 470 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -647,7 +665,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-{ get_string(yytext); return yy::parser::token::GL_COMMIT;  }
+{ 
+  create_git_log_node(GitLogNode::NodeType::commit);  
+  return yy::parser::token::GL_COMMIT;  
+  }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */

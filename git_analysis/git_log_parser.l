@@ -7,12 +7,30 @@
   #include <fstream>
   #include "git_log_parser.tab.hh"
   using namespace std;
+  using namespace GB;
   //extern int yylex();
   yy::parser::semantic_type *yyval {};
   void get_string(char* yytext){
     yyval->sval = new char[strlen(yytext)+1];
     sprintf(yyval->sval,"%s",yytext);  
   }
+
+  GB::GitLogNode * end_node_ptr{};
+  
+  void create_git_log_node(const GitLogNode::NodeType &type, char* yytext = NULL){
+    if(!yytext) {
+      yyval->node_ptr = new GitLogNode(type);
+    }
+    else {
+      yyval->node_ptr = new GitLogNode(yytext);
+    }
+
+    if(end_node_ptr){
+      yyval->node_ptr->set_next_node(end_node_ptr);
+    }
+
+    end_node_ptr =  yyval->node_ptr;    
+  }  
 %}
 %option noyywrap
 %option noline
@@ -21,7 +39,10 @@
 
 "Author" { get_string(yytext); return yy::parser::token::GL_AUTHOR; }
 "Date" { get_string(yytext); return yy::parser::token::GL_DATE;}
-"commit" { get_string(yytext); return yy::parser::token::GL_COMMIT;  }
+"commit" { 
+  create_git_log_node(GitLogNode::NodeType::commit);  
+  return yy::parser::token::GL_COMMIT;  
+  }
 [ \t\n\r]        {} 
 [<>:]        { return yy::parser::token::GL_SPACE;} 
 [0-9]+          { yyval->ival = atoi(yytext); return yy::parser::token::GL_NUMBER;}

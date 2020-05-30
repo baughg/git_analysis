@@ -3,10 +3,16 @@
 using namespace GB;
 
 GitLogNode::GitLogNode(const char *text_str) 
-	: node_text_ { text_str }
+	: node_text_ { text_str },
+	type_{NodeType::text}
 {
 }
 
+GitLogNode::GitLogNode(NodeType type) 
+	: type_ { type }
+{
+
+}
 
 void GitLogNode::set_next_node(GitLogNode* node_ptr) {
 	next_ptr_ = node_ptr;
