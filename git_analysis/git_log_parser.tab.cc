@@ -40,6 +40,7 @@
   #include <string>
   #include "unistd.h"
   #include <fstream>
+  #include "GitLogNode.h"
   using namespace std;
  #include "git_log_parser.tab.hh"
   extern int yylex(yy::parser::semantic_type *val);
@@ -71,7 +72,7 @@
     }
   ;*/
 
-#line 75 "git_log_parser.tab.cc" // lalr1.cc:404
+#line 76 "git_log_parser.tab.cc" // lalr1.cc:404
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -85,7 +86,7 @@
 
 // User implementation prologue.
 
-#line 89 "git_log_parser.tab.cc" // lalr1.cc:412
+#line 90 "git_log_parser.tab.cc" // lalr1.cc:412
 
 
 #ifndef YY_
@@ -152,7 +153,7 @@
 
 
 namespace yy {
-#line 156 "git_log_parser.tab.cc" // lalr1.cc:479
+#line 157 "git_log_parser.tab.cc" // lalr1.cc:479
 
   /// Build a parser object.
   parser::parser ()
@@ -575,19 +576,19 @@ namespace yy {
           switch (yyn)
             {
   case 4:
-#line 59 "git_log_parser.y" // lalr1.cc:859
+#line 63 "git_log_parser.y" // lalr1.cc:859
     {std::cout << "str " << (yystack_[0].value.sval) << std::endl;}
-#line 581 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 582 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
-#line 60 "git_log_parser.y" // lalr1.cc:859
+#line 64 "git_log_parser.y" // lalr1.cc:859
     {std::cout << "str_lst " << (yystack_[1].value.sval) << std::endl;}
-#line 587 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 588 "git_log_parser.tab.cc" // lalr1.cc:859
     break;
 
 
-#line 591 "git_log_parser.tab.cc" // lalr1.cc:859
+#line 592 "git_log_parser.tab.cc" // lalr1.cc:859
             default:
               break;
             }
@@ -835,8 +836,8 @@ namespace yy {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    57,    57,    57,    59,    60,    62,    72,    73,    76,
-      77,    80,    81
+       0,    61,    61,    61,    63,    64,    66,    76,    77,    80,
+      81,    84,    85
   };
 
   // Print the state stack on the debug stream.
@@ -918,5 +919,5 @@ namespace yy {
 
 
 } // yy
-#line 922 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 83 "git_log_parser.y" // lalr1.cc:1168
+#line 923 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 87 "git_log_parser.y" // lalr1.cc:1168

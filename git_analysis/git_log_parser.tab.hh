@@ -39,6 +39,13 @@
 
 #ifndef YY_YY_GIT_LOG_PARSER_TAB_HH_INCLUDED
 # define YY_YY_GIT_LOG_PARSER_TAB_HH_INCLUDED
+// //                    "%code requires" blocks.
+#line 41 "git_log_parser.y" // lalr1.cc:377
+   
+  #include "GitLogNode.h" 
+  
+
+#line 49 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 # include <cstdlib> // std::abort
@@ -110,7 +117,7 @@
 
 
 namespace yy {
-#line 114 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 121 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 
@@ -124,12 +131,13 @@ namespace yy {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 41 "git_log_parser.y" // lalr1.cc:377
+    #line 44 "git_log_parser.y" // lalr1.cc:377
 
   int ival;
   char* sval;
+  GB::GitLogNode* node_ptr;
 
-#line 133 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 141 "git_log_parser.tab.hh" // lalr1.cc:377
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -467,7 +475,7 @@ namespace yy {
 
 
 } // yy
-#line 471 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 479 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

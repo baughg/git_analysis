@@ -5,6 +5,7 @@
   #include <string>
   #include "unistd.h"
   #include <fstream>
+  #include "GitLogNode.h"
   using namespace std;
  #include "git_log_parser.tab.hh"
   extern int yylex(yy::parser::semantic_type *val);
@@ -37,10 +38,13 @@
   ;*/
 %}
 %language "c++"
-
+%code requires {   
+  #include "GitLogNode.h" 
+  }
 %union {
   int ival;
   char* sval;
+  GB::GitLogNode* node_ptr;
 }
 
 %token <ival> GL_NUMBER
