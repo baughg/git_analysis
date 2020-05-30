@@ -71,7 +71,7 @@
 
 [a-zA-Z0-9]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
-  get_string(yytext); return yy::parser::token::GL_STRING;
+  return yy::parser::token::GL_STRING;
   }
 
 [a-z0-9 _]+@[a-z0-9]+.[a-z]+ { 
