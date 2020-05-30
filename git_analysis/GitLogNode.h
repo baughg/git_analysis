@@ -5,7 +5,7 @@ namespace GB {
 	class GitLogNode
 	{	
 	public:
-		enum class NodeType { none,commit,text,number,author,email,date,time,time_zone };	
+		enum class NodeType { none,commit,text,number,author,email,date,time,time_zone,merge };	
 		GitLogNode() = default;
 		GitLogNode(const char *text_str);
 		GitLogNode(NodeType type);

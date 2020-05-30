@@ -87,6 +87,11 @@
   create_git_log_node(GitLogNode::NodeType::commit);  
   return yy::parser::token::GL_COMMIT;  
   }
+
+^"Merge:" { 
+  create_git_log_node(GitLogNode::NodeType::merge);  
+  return yy::parser::token::GL_MERGE;  
+  }
 %%
 
 yyFlexLexer *lexer_ptr{};

@@ -162,8 +162,9 @@ namespace yy {
         GL_EMAIL = 263,
         GL_TIME = 264,
         GL_TIME_ZONE = 265,
-        GL_SPACE = 266,
-        GL_NEWLINE = 267
+        GL_MERGE = 266,
+        GL_SPACE = 267,
+        GL_NEWLINE = 268
       };
     };
 
@@ -462,12 +463,12 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 24,     ///< Last index in yytable_.
-      yynnts_ = 8,  ///< Number of nonterminal symbols.
+      yylast_ = 28,     ///< Last index in yytable_.
+      yynnts_ = 9,  ///< Number of nonterminal symbols.
       yyfinal_ = 7, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 13  ///< Number of tokens.
+      yyntokens_ = 14  ///< Number of tokens.
     };
 
 
@@ -476,7 +477,7 @@ namespace yy {
 
 
 } // yy
-#line 480 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 481 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

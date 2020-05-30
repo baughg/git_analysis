@@ -55,6 +55,7 @@
 %token <node_ptr> GL_EMAIL
 %token <node_ptr> GL_TIME
 %token <node_ptr> GL_TIME_ZONE
+%token <node_ptr> GL_MERGE
 %token GL_SPACE
 %token GL_NEWLINE
 
@@ -64,8 +65,11 @@ prog :  | commit_entries
 string_list : GL_STRING
                   | GL_STRING string_list
                   ; 
+merge_option :    | GL_MERGE string_list new_line
+                  ;   
 commit_entry :  GL_COMMIT 
                 string_list new_line 
+                merge_option
                 GL_AUTHOR  
                 string_list space_list 
                 GL_EMAIL space_list new_line
