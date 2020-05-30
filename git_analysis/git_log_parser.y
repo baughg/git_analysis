@@ -47,14 +47,14 @@
   GB::GitLogNode* node_ptr;
 }
 
-%token <ival> GL_NUMBER
-%token <sval> GL_AUTHOR
-%token <sval> GL_DATE
-%token <sval> GL_COMMIT
-%token <sval> GL_STRING
-%token <sval> GL_EMAIL
-%token <sval> GL_TIME
-%token <sval> GL_TIME_ZONE
+%token <node_ptr> GL_NUMBER
+%token <node_ptr> GL_AUTHOR
+%token <node_ptr> GL_DATE
+%token <node_ptr> GL_COMMIT
+%token <node_ptr> GL_STRING
+%token <node_ptr> GL_EMAIL
+%token <node_ptr> GL_TIME
+%token <node_ptr> GL_TIME_ZONE
 %token GL_SPACE
 
 %%

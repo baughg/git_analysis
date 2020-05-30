@@ -36,7 +36,7 @@
     }
 
     if(end_node_ptr){
-      yyval->node_ptr->set_next_node(end_node_ptr);
+      end_node_ptr->set_next_node(yyval->node_ptr);  
     }
 
     end_node_ptr =  yyval->node_ptr;    

@@ -706,7 +706,7 @@ case 7:
 YY_RULE_SETUP
 {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
-  get_string(yytext); return yy::parser::token::GL_STRING;
+  return yy::parser::token::GL_STRING;
   }
 	YY_BREAK
 case 8:
