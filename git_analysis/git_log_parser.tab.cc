@@ -737,74 +737,77 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -20;
+  const signed char parser::yypact_ninf_ = -24;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -3,     2,    10,    -3,   -20,     2,     7,   -20,   -20,   -20,
-       1,     1,     2,   -20,     1,     5,     1,    11,     1,     2,
-      12,    12,     8,   -20,    12,     9,     2,   -20
+      -3,    -1,     8,    -3,   -24,    -1,     1,   -24,   -24,   -24,
+       1,    10,   -24,     4,     4,    -1,   -24,     4,     9,     4,
+       1,    11,     4,    -1,    16,    16,    13,   -24,    16,    14,
+       1,    -1,     1,   -24
   };
 
   const unsigned char
   parser::yydefact_[] =
   {
        2,     0,     0,     7,     3,     4,     0,     1,     8,     5,
-       0,    11,     0,    12,     0,     0,     0,     0,     0,     0,
-       0,     9,     0,    10,     0,     0,     0,     6
+      13,     0,    14,     0,    11,     0,    12,     0,     0,     0,
+       0,     0,     0,     0,     0,     9,     0,    10,     0,     0,
+       0,     0,     0,     6
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-     -20,   -20,    -5,   -20,    15,   -19,   -10
+     -24,   -24,    -5,   -24,    17,   -23,   -10,    -9
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     2,     6,     3,     4,    22,    12
+      -1,     2,     6,     3,     4,    26,    15,    11
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-       9,    13,    23,     1,    15,    25,    17,    14,    19,     5,
-       7,    10,    11,    16,    20,    21,    18,    24,     8,    26,
-       0,    27
+       9,    12,    27,     1,    16,    29,     5,    18,     7,    20,
+      17,    21,    23,    10,    13,    14,    22,    19,    24,    25,
+       8,    31,    28,    33,    30,     0,    32
   };
 
   const signed char
   parser::yycheck_[] =
   {
-       5,    11,    21,     6,    14,    24,    16,    12,    18,     7,
-       0,     4,    11,     8,    19,     3,     5,     9,     3,    10,
-      -1,    26
+       5,    10,    25,     6,    14,    28,     7,    17,     0,    19,
+      15,    20,    22,    12,     4,    11,     5,     8,    23,     3,
+       3,    30,     9,    32,    10,    -1,    31
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     6,    13,    15,    16,     7,    14,     0,    16,    14,
-       4,    11,    18,    18,    14,    18,     8,    18,     5,    18,
-      14,     3,    17,    17,     9,    17,    10,    14
+       0,     6,    14,    16,    17,     7,    15,     0,    17,    15,
+      12,    20,    20,     4,    11,    19,    19,    15,    19,     8,
+      19,    20,     5,    19,    15,     3,    18,    18,     9,    18,
+      10,    20,    15,    20
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,    12,    13,    13,    14,    14,    15,    16,    16,    17,
-      17,    18,    18
+       0,    13,    14,    14,    15,    15,    16,    17,    17,    18,
+      18,    19,    19,    20,    20
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
-       0,     2,     0,     1,     1,     2,    16,     1,     2,     1,
-       2,     1,     2
+       0,     2,     0,     1,     1,     2,    20,     1,     2,     1,
+       2,     1,     2,     1,     2
   };
 
 
@@ -816,16 +819,17 @@ namespace yy {
   {
   "$end", "error", "$undefined", "GL_NUMBER", "GL_AUTHOR", "GL_DATE",
   "GL_COMMIT", "GL_STRING", "GL_EMAIL", "GL_TIME", "GL_TIME_ZONE",
-  "GL_SPACE", "$accept", "prog", "string_list", "commit_entry",
-  "commit_entries", "number_list", "space_list", YY_NULLPTR
+  "GL_SPACE", "GL_NEWLINE", "$accept", "prog", "string_list",
+  "commit_entry", "commit_entries", "number_list", "space_list",
+  "new_line", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    61,    61,    61,    63,    64,    66,    76,    77,    80,
-      81,    84,    85
+       0,    62,    62,    62,    64,    65,    67,    78,    79,    82,
+      83,    86,    87,    90,    91
   };
 
   // Print the state stack on the debug stream.
@@ -892,9 +896,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11
+       5,     6,     7,     8,     9,    10,    11,    12
     };
-    const unsigned int user_token_number_max_ = 266;
+    const unsigned int user_token_number_max_ = 267;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -907,5 +911,5 @@ namespace yy {
 
 
 } // yy
-#line 911 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 87 "git_log_parser.y" // lalr1.cc:1168
+#line 915 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 93 "git_log_parser.y" // lalr1.cc:1168
