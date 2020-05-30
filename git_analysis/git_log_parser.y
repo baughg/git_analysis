@@ -56,6 +56,7 @@
 %token <node_ptr> GL_TIME
 %token <node_ptr> GL_TIME_ZONE
 %token GL_SPACE
+%token GL_NEWLINE
 
 %%
 prog :  | commit_entries 
@@ -64,14 +65,15 @@ string_list : GL_STRING
                   | GL_STRING string_list
                   ; 
 commit_entry :  GL_COMMIT 
-                string_list 
+                string_list new_line 
                 GL_AUTHOR space_list 
                 string_list space_list 
-                GL_EMAIL space_list 
+                GL_EMAIL space_list new_line
                 GL_DATE space_list 
                 string_list 
                 number_list GL_TIME
-                number_list GL_TIME_ZONE string_list
+                number_list GL_TIME_ZONE new_line
+                string_list new_line
                   ;  
 commit_entries :  commit_entry 
                   | commit_entry commit_entries
@@ -83,5 +85,9 @@ number_list : GL_NUMBER
 
 space_list : GL_SPACE 
                   | GL_SPACE space_list
+                  ;
+
+new_line : GL_NEWLINE 
+                  | GL_NEWLINE new_line
                   ;
 %%

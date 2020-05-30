@@ -61,7 +61,9 @@
   create_git_log_node(GitLogNode::NodeType::commit);  
   return yy::parser::token::GL_COMMIT;  
   }
-[ \t\n\r]        {} 
+  
+[\n\r] {return yy::parser::token::GL_NEWLINE; }
+[ \t]        {} 
 [<>:]        { return yy::parser::token::GL_SPACE;} 
 
 [0-9]+ { 
