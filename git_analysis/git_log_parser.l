@@ -46,22 +46,6 @@
 %option noline
 %option c++
 %%
-
-"Author" { 
-  create_git_log_node(GitLogNode::NodeType::author);  
-  return yy::parser::token::GL_AUTHOR; 
-  }
-
-"Date" { 
-  create_git_log_node(GitLogNode::NodeType::date); 
-  return yy::parser::token::GL_DATE;
-  }
-
-"commit" { 
-  create_git_log_node(GitLogNode::NodeType::commit);  
-  return yy::parser::token::GL_COMMIT;  
-  }
-  
 [\n\r] {return yy::parser::token::GL_NEWLINE; }
 [ \t]        {} 
 [<>:]        { return yy::parser::token::GL_SPACE;} 
@@ -87,6 +71,21 @@
 [+0-9]+ { 
   create_git_log_node(GitLogNode::NodeType::time_zone,yytext);
   return yy::parser::token::GL_TIME_ZONE;
+  }
+
+^"Author:" { 
+  create_git_log_node(GitLogNode::NodeType::author);  
+  return yy::parser::token::GL_AUTHOR; 
+  }
+
+^"Date:" { 
+  create_git_log_node(GitLogNode::NodeType::date); 
+  return yy::parser::token::GL_DATE;
+  }
+
+^"commit " { 
+  create_git_log_node(GitLogNode::NodeType::commit);  
+  return yy::parser::token::GL_COMMIT;  
   }
 %%
 

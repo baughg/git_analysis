@@ -66,10 +66,10 @@ string_list : GL_STRING
                   ; 
 commit_entry :  GL_COMMIT 
                 string_list new_line 
-                GL_AUTHOR space_list 
+                GL_AUTHOR  
                 string_list space_list 
                 GL_EMAIL space_list new_line
-                GL_DATE space_list 
+                GL_DATE  
                 string_list 
                 number_list GL_TIME
                 number_list GL_TIME_ZONE new_line
