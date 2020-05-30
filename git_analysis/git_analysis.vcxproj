@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="getopt.c" />
+    <ClCompile Include="GitLogNode.cpp" />
     <ClCompile Include="git_log_parser.tab.cc" />
     <ClCompile Include="lex.yy.cc" />
     <ClCompile Include="main.cpp" />
@@ -127,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h" />
+    <ClInclude Include="GitLogNode.h" />
     <ClInclude Include="git_log_parser.tab.hh" />
     <ClInclude Include="platform_os\platform_os\PlatformOS.h" />
     <ClInclude Include="platform_os\platform_os\WindowsPlatform.h" />
