@@ -7,8 +7,7 @@ namespace GB {
 	public:
 		enum class NodeType { 
 			none,commit,text,number,author,
-			email,date,time,time_zone,merge,
-			colon
+			date,merge,colon
 		};
 
 		GitLogNode() = default;

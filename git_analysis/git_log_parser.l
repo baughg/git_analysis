@@ -24,13 +24,7 @@
     else if(type == GitLogNode::NodeType::number){
       yyval->node_ptr = new GitLogNode(GitLogNode::NodeType::number);
       yyval->node_ptr->set_number(num);
-    }
-    else if(type == GitLogNode::NodeType::email || 
-    type == GitLogNode::NodeType::time ||
-    type == GitLogNode::NodeType::time_zone){
-      yyval->node_ptr = new GitLogNode(type);
-      yyval->node_ptr->set_text(yytext);
-    }
+    }    
     else {
       yyval->node_ptr = new GitLogNode(yytext);
     }
@@ -48,7 +42,6 @@
 %%
 [\n\r] {return yy::parser::token::GL_NEWLINE; }
 [ \t]        {} 
-[<>]        { return yy::parser::token::GL_SPACE;} 
 
 [0-9]+ { 
   create_git_log_node(GitLogNode::NodeType::number,yytext,atoi(yytext));  
@@ -60,14 +53,9 @@
   return yy::parser::token::GL_COLON; 
   }
 
-[a-zA-Z0-9/\\]+ {
+[a-zA-Z0-9/\\<>.@]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
-  }
-
-[a-z0-9 _]+@[a-z0-9]+.[a-z]+ { 
-  create_git_log_node(GitLogNode::NodeType::email,yytext);
-  return yy::parser::token::GL_EMAIL;
   }
 
 ^"Author:" { 

@@ -52,7 +52,6 @@
 %token <node_ptr> GL_DATE
 %token <node_ptr> GL_COMMIT
 %token <node_ptr> GL_STRING
-%token <node_ptr> GL_EMAIL
 %token <node_ptr> GL_MERGE
 %token <node_ptr> GL_COLON
 %token GL_SPACE
@@ -70,8 +69,7 @@ commit_entry :  GL_COMMIT
                 string_list new_line 
                 merge_option
                 GL_AUTHOR  
-                string_list space_list 
-                GL_EMAIL space_list new_line
+                string_list new_line
                 GL_DATE  
                 string_list                 
                 number_list GL_COLON number_list GL_COLON number_list new_line
@@ -83,10 +81,6 @@ commit_entries :  commit_entry
 
 number_list : GL_NUMBER 
                   | GL_NUMBER number_list
-                  ;
-
-space_list : GL_SPACE 
-                  | GL_SPACE space_list
                   ;
 
 new_line : GL_NEWLINE 
