@@ -49,7 +49,7 @@
   return yy::parser::token::GL_COLON; 
   }
 
-[a-zA-Z0-9/\\<>.@'\"+]+ {
+[a-zA-Z0-9/\\<>.@'\"+\-*_=]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
   }
