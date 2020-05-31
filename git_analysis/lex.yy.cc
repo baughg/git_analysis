@@ -1672,7 +1672,7 @@ void yy::parser::error (const std::string& msg)
 }
 
 int main(int argc, char** argv) {
-  std::string git_log_filename{ "C:\\development\\nce\\vscxggb" };
+  std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
   std::ifstream log_in {git_log_filename.c_str()};
   yyFlexLexer lexer{ log_in, std::cout};
   lexer_ptr = &lexer;

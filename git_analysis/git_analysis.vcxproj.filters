@@ -36,6 +36,12 @@
     <ClCompile Include="GitLogNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GitCommit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GitCommitCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform_os\platform_os\PlatformOS.h">
@@ -54,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GitLogNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GitCommit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GitCommitCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

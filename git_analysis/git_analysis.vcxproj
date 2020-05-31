@@ -119,6 +119,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="getopt.c" />
+    <ClCompile Include="GitCommit.cpp" />
+    <ClCompile Include="GitCommitCreator.cpp" />
     <ClCompile Include="GitLogNode.cpp" />
     <ClCompile Include="git_log_parser.tab.cc" />
     <ClCompile Include="lex.yy.cc" />
@@ -128,6 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h" />
+    <ClInclude Include="GitCommit.h" />
+    <ClInclude Include="GitCommitCreator.h" />
     <ClInclude Include="GitLogNode.h" />
     <ClInclude Include="git_log_parser.tab.hh" />
     <ClInclude Include="platform_os\platform_os\PlatformOS.h" />
