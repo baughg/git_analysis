@@ -418,6 +418,7 @@ static const flex_int16_t yy_chk[61] =
   #include "unistd.h"
   #include <fstream>
   #include "git_log_parser.tab.hh"
+  #include "GitCommitCreator.h"
   using namespace std;
   using namespace GB;
   //extern int yylex();
@@ -447,7 +448,7 @@ static const flex_int16_t yy_chk[61] =
 
     end_node_ptr =  yyval->node_ptr;    
   }  
-#line 450 "lex.yy.cc"
+#line 451 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -1687,5 +1688,6 @@ int main(int argc, char** argv) {
   // }
   log_in.close();
 
+  GitCommitCreator creator {end_node_ptr};
   return 0;
 }

@@ -40,7 +40,7 @@
 #ifndef YY_YY_GIT_LOG_PARSER_TAB_HH_INCLUDED
 # define YY_YY_GIT_LOG_PARSER_TAB_HH_INCLUDED
 // //                    "%code requires" blocks.
-#line 41 "git_log_parser.y" // lalr1.cc:377
+#line 16 "git_log_parser.y" // lalr1.cc:377
    
   #include "GitLogNode.h" 
   
@@ -131,7 +131,7 @@ namespace yy {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 44 "git_log_parser.y" // lalr1.cc:377
+    #line 19 "git_log_parser.y" // lalr1.cc:377
 
   int ival;
   char* sval;

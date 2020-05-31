@@ -6,6 +6,7 @@
   #include "unistd.h"
   #include <fstream>
   #include "git_log_parser.tab.hh"
+  #include "GitCommitCreator.h"
   using namespace std;
   using namespace GB;
   //extern int yylex();
@@ -87,7 +88,7 @@ void yy::parser::error (const std::string& msg)
 }
 
 int main(int argc, char** argv) {
-  std::string git_log_filename{ "C:\\development\\nce\\vscxggb" };
+  std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
   std::ifstream log_in {git_log_filename.c_str()};
   yyFlexLexer lexer{ log_in, std::cout};
   lexer_ptr = &lexer;
@@ -102,5 +103,6 @@ int main(int argc, char** argv) {
   // }
   log_in.close();
 
+  GitCommitCreator creator {end_node_ptr};
   return 0;
 }

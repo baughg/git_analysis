@@ -1,6 +1,7 @@
 #pragma once
 #include "GitCommit.h"
 #include "GitLogNode.h"
+#include <vector>
 
 namespace GB {
 	class GitCommitCreator
@@ -9,7 +10,9 @@ namespace GB {
 		GitCommitCreator() = delete;
 		GitCommitCreator(GitLogNode *terminal_node);
 	private:
-		GitLogNode* terminal_node_{};
+		bool parse_nodes(GitLogNode* end_node_ptr);
+		std::vector<GitCommit> commits_{};		
+		bool nodes_ok_{false};
 	};
 }
 

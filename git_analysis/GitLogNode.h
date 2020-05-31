@@ -16,6 +16,10 @@ namespace GB {
 		void set_next_node(GitLogNode* node_ptr);
 		void set_number(const int &num);
 		void set_text(const char *text_str);
+		GitLogNode* get_prev_node() { return prev_ptr_; }
+		GitLogNode* get_next_node() { return next_ptr_; }
+		NodeType get_type() { return type_; }
+		std::string get_text() { return std::move(node_text_); }
 	private:
 		std::string node_text_{};
 		int node_num_{ };
