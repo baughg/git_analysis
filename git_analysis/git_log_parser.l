@@ -43,11 +43,6 @@
 [\n\r] {return yy::parser::token::GL_NEWLINE; }
 [ \t]        {} 
 
-[0-9]+ { 
-  create_git_log_node(GitLogNode::NodeType::number,yytext,atoi(yytext));  
-  return yy::parser::token::GL_NUMBER;
-  }
-
 [:] { 
   create_git_log_node(GitLogNode::NodeType::colon); 
   return yy::parser::token::GL_COLON; 
@@ -88,7 +83,7 @@ int yylex(yy::parser::semantic_type *val) {
 
 void yy::parser::error (const std::string& msg)
 {
-
+  std::cerr << "Error: " << msg << std::endl;
 }
 
 int main(int argc, char** argv) {

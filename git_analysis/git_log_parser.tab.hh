@@ -154,15 +154,14 @@ namespace yy {
     {
       enum yytokentype
       {
-        GL_NUMBER = 258,
-        GL_AUTHOR = 259,
-        GL_DATE = 260,
-        GL_COMMIT = 261,
-        GL_STRING = 262,
-        GL_MERGE = 263,
-        GL_COLON = 264,
-        GL_SPACE = 265,
-        GL_NEWLINE = 266
+        GL_AUTHOR = 258,
+        GL_DATE = 259,
+        GL_COMMIT = 260,
+        GL_STRING = 261,
+        GL_MERGE = 262,
+        GL_COLON = 263,
+        GL_SPACE = 264,
+        GL_NEWLINE = 265
       };
     };
 
@@ -344,7 +343,7 @@ namespace yy {
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const signed char yycheck_[];
+  static const unsigned char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -461,12 +460,12 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 27,     ///< Last index in yytable_.
-      yynnts_ = 9,  ///< Number of nonterminal symbols.
+      yylast_ = 23,     ///< Last index in yytable_.
+      yynnts_ = 8,  ///< Number of nonterminal symbols.
       yyfinal_ = 7, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 12  ///< Number of tokens.
+      yyntokens_ = 11  ///< Number of tokens.
     };
 
 
@@ -475,7 +474,7 @@ namespace yy {
 
 
 } // yy
-#line 479 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 478 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

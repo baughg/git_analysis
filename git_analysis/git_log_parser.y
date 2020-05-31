@@ -47,7 +47,6 @@
   GB::GitLogNode* node_ptr;
 }
 
-%token <node_ptr> GL_NUMBER
 %token <node_ptr> GL_AUTHOR
 %token <node_ptr> GL_DATE
 %token <node_ptr> GL_COMMIT
@@ -62,7 +61,7 @@ prog :  | commit_entries
                   ;
 string_list : GL_STRING
                   | GL_STRING string_list
-                  ; 
+                                    ; 
 merge_option :    | GL_MERGE string_list new_line
                   ;   
 commit_entry :  GL_COMMIT 
@@ -72,16 +71,13 @@ commit_entry :  GL_COMMIT
                 string_list new_line
                 GL_DATE  
                 string_list                 
-                number_list GL_COLON number_list GL_COLON number_list string_list new_line
+                GL_COLON string_list 
+                GL_COLON string_list new_line
                 commit_msg new_line
                   ;  
 commit_entries :  commit_entry 
                   | commit_entry commit_entries
                   ; 
-
-number_list : GL_NUMBER 
-                  | GL_NUMBER number_list
-                  ;
 
 new_line : GL_NEWLINE 
                   | GL_NEWLINE new_line
