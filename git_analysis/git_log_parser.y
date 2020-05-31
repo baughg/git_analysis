@@ -72,7 +72,7 @@ commit_entry :  GL_COMMIT
                 string_list new_line
                 GL_DATE  
                 string_list                 
-                number_list GL_COLON number_list GL_COLON number_list new_line
+                number_list GL_COLON number_list GL_COLON number_list string_list new_line
                 commit_msg new_line
                   ;  
 commit_entries :  commit_entry 
