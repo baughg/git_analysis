@@ -48,14 +48,19 @@
 %%
 [\n\r] {return yy::parser::token::GL_NEWLINE; }
 [ \t]        {} 
-[<>:]        { return yy::parser::token::GL_SPACE;} 
+[<>]        { return yy::parser::token::GL_SPACE;} 
 
 [0-9]+ { 
-  create_git_log_node(GitLogNode::NodeType::number,NULL,atoi(yytext));  
+  create_git_log_node(GitLogNode::NodeType::number,yytext,atoi(yytext));  
   return yy::parser::token::GL_NUMBER;
   }
 
-[a-zA-Z0-9]+ {
+[:] { 
+  create_git_log_node(GitLogNode::NodeType::colon); 
+  return yy::parser::token::GL_COLON; 
+  }
+
+[a-zA-Z0-9/\\]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
   }
@@ -63,14 +68,6 @@
 [a-z0-9 _]+@[a-z0-9]+.[a-z]+ { 
   create_git_log_node(GitLogNode::NodeType::email,yytext);
   return yy::parser::token::GL_EMAIL;
-  }
-[0-9]+:[0-9]+:[0-9]+ { 
-  create_git_log_node(GitLogNode::NodeType::time,yytext);
-  return yy::parser::token::GL_TIME;
-  }
-[+0-9]+ { 
-  create_git_log_node(GitLogNode::NodeType::time_zone,yytext);
-  return yy::parser::token::GL_TIME_ZONE;
   }
 
 ^"Author:" { 
