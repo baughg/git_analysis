@@ -39,6 +39,7 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 	GitLogNode::NodeType node_type{ };
 	std::string text{};
 	int32_t commit_number{ static_cast<int32_t>(commit_count)};
+	std::string whitespace{};
 
 	for (uint32_t c{}; c < commit_count; ++c) {		
 		GitCommit commit{};
@@ -66,16 +67,19 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 				}
 
 				text.clear();
+				whitespace.clear();
 				current_type = node_type;
 				break;
 
 			case GitLogNode::NodeType::colon:
 				text.append(":");
+				whitespace.clear();
 				break;
 
 			case GitLogNode::NodeType::text:
+				text.append(whitespace);
 				text.append(current_node_ptr->get_text());
-				text.append(" ");
+				whitespace = " ";
 				break;
 			}
 
@@ -91,6 +95,7 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 				}
 
 				text.clear();
+				whitespace.clear();
 				current_type = GitLogNode::NodeType::none;
 				break;
 			}
