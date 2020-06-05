@@ -1,4 +1,8 @@
 #include "StringUtility.h"
+#include <algorithm>
+#include <functional> 
+#include <cctype>
+#include <locale>
 
 using namespace GB;
 
@@ -18,4 +22,8 @@ size_t StringUtility::split_string(
 	}
 
 	return tokenVector.size();
+}
+
+void StringUtility::trim(std::string &s) {	
+	s.erase(std::remove(std::begin(s), std::end(s), ' '), std::end(s));	
 }

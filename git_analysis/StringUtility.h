@@ -10,6 +10,8 @@ namespace GB {
 			const std::string &str,
 			std::deque<std::string>& tokenVector,
 			const char token);
+
+		static void trim(std::string &s);
 	};
 }
 
