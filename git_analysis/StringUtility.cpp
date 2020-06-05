@@ -3,9 +3,10 @@
 using namespace GB;
 
 
-void StringUtility::split_string(
+size_t StringUtility::split_string(
 	const std::string &str, std::deque<std::string>& tokenVector, char token)
 {	
+	tokenVector.clear();
 	auto lastPosition{ str.find_first_not_of(token, 0) };	
 	auto position{ str.find_first_of(token, lastPosition) };
 
@@ -15,4 +16,6 @@ void StringUtility::split_string(
 		lastPosition = str.find_first_not_of(token, position);	
 		position = str.find_first_of(token, lastPosition);
 	}
+
+	return tokenVector.size();
 }
