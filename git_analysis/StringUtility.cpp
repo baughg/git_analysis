@@ -24,6 +24,13 @@ size_t StringUtility::split_string(
 	return tokenVector.size();
 }
 
-void StringUtility::trim(std::string &s) {	
-	s.erase(std::remove(std::begin(s), std::end(s), ' '), std::end(s));	
+void StringUtility::trim(std::string &str) {	
+	const auto strBegin{ str.find_first_not_of(' ') };
+	if (strBegin == std::string::npos)
+		return; // no content
+
+	const auto strEnd{ str.find_last_not_of(' ') };
+	const auto strRange{ strEnd - strBegin + 1 };
+
+	str = str.substr(strBegin, strRange);
 }
