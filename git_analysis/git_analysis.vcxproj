@@ -127,6 +127,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="platform_os\platform_os\PlatformOS.cpp" />
     <ClCompile Include="platform_os\platform_os\WindowsPlatform.cpp" />
+    <ClCompile Include="StringUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="git_log_parser.tab.hh" />
     <ClInclude Include="platform_os\platform_os\PlatformOS.h" />
     <ClInclude Include="platform_os\platform_os\WindowsPlatform.h" />
+    <ClInclude Include="StringUtility.h" />
     <ClInclude Include="unistd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
