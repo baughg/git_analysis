@@ -8,7 +8,7 @@ namespace GB {
 	public:
 		void set_hash(const std::string &hash) { hash_ = hash; }
 		void set_author(const std::string &author);
-		void set_date(const std::string &date_str) { date_str_ = date_str; }
+		void set_date(const std::string &date_str);
 		void set_message(const std::string &message) { message_ = message; }
 		void set_merge(const std::string &merge) { merge_ = merge; }
 		void set_commit_number(const int32_t &num) { commit_number_ = num; }
