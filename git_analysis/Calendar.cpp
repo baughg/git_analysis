@@ -65,6 +65,14 @@ Calendar::Month &operator++(Calendar::Month &e)
 	return e;
 }
 
+uint32_t Calendar::get_week_of_year(
+	const uint32_t &day, const Month &month) {
+	const uint32_t key{ (static_cast<uint32_t>(month) << 16) | day };
+
+	assert(week_lut_.find(key) != std::end(week_lut_));
+	return week_lut_[key];
+}
+
 void Calendar::generate() {
 	const static std::vector<Month> months{
 		Month::january,

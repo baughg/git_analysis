@@ -58,5 +58,7 @@ bool DateTime::date_time_from_string(const std::string &str)
 	if (it == std::end(calender_)) {
 		calender_[year] = Calendar{ year };
 	}
+	const uint32_t day{ static_cast<uint32_t>(atoi(date_time_comp[2].c_str())) };
+	week_of_year_ = calender_[year].get_week_of_year(day,month_);
 	return true;
 }
