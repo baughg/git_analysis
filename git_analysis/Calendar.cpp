@@ -9,6 +9,20 @@ Calendar::Calendar(uint32_t year)
 }
 
 
+Calendar::Day Calendar::day_of_month(const uint32_t &day, const Month &mon)
+{
+	const uint32_t month{ 
+		static_cast<uint32_t>(mon) - static_cast<uint32_t>(Month::january) };
+
+	static uint32_t t[] = { 0, 3, 2, 5, 0, 3, 5, 1,
+					   4, 6, 2, 4 };
+	year_ -= month < 3;
+	const uint32_t day_index{ (year_ + (year_ >> 2) - year_ / 100 +
+		year_ / 400 + t[month - 1] + day) % 7 };
+
+	return static_cast<Day>(static_cast<uint32_t>(Day::sunday) + day_index);
+}
+
 uint32_t Calendar::number_of_days(const Month &month)
 {
 	assert(month != Month::none);

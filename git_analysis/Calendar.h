@@ -36,6 +36,7 @@ namespace GB {
 		Calendar() = default;
 		explicit Calendar(uint32_t year);
 		uint32_t number_of_days(const Month &month);
+		Calendar::Day day_of_month(const uint32_t &day, const Month &month);
 	private:
 		uint32_t year_{};
 	};
