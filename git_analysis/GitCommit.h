@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <cstdint>
+#include "DateTime.h"
 
 namespace GB {
 	class GitCommit
@@ -20,6 +21,7 @@ namespace GB {
 		std::string date_str_{};
 		std::string merge_{};
 		int32_t commit_number_{};
+		DateTime date_time_{};
 	};
 }
 

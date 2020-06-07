@@ -5,6 +5,7 @@ namespace GB {
 	class DateTime
 	{
 		enum class Day {
+			none,
 			sunday,
 			monday,
 			tuesday,
@@ -15,6 +16,7 @@ namespace GB {
 		};
 
 		enum class Month {
+			none,
 			january,
 			february,
 			march,

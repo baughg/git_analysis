@@ -8,6 +8,7 @@ void GitCommit::set_date(const std::string &date_str) {
 	position += 5;
 
 	date_str_ = date_str.substr(0, position);
+	date_time_.date_time_from_string(date_str_);
 	const auto msg_len{ date_str.length() - position };
 	message_ = date_str.substr(position + 1, msg_len);
 }
