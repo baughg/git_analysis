@@ -123,8 +123,8 @@ bool GitCommitCreator::process(PlatformOS &os)
 		std::ofstream batch_file{ batch_filename.c_str() };
 		std::string git_out_filename{ os.get_random_string(20) };
 		git_out_filename.append(".gof");
-
-		batch_file << "git.exe checkout " << commit.get_hash();
+		std::cout << "git checkout " << commit.get_hash() << std::endl;
+		batch_file << "git.exe checkout " << commit.get_hash() << std::endl;
 		batch_file << "git.exe ls-files >" << git_out_filename << std::endl;		
 		batch_file.close();
 		os.run_application("", batch_filename);
