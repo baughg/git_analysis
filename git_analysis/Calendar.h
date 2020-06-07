@@ -32,7 +32,8 @@ namespace GB {
 			december
 		};
 
-		Calendar(uint32_t year);
+		Calendar() = default;
+		explicit Calendar(uint32_t year);
 	private:
 		uint32_t year_{};
 	};

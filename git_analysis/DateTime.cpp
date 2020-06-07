@@ -1,8 +1,10 @@
 #include "DateTime.h"
 #include "StringUtility.h"
 #include <map>
+#include <cassert>
 
 using namespace GB;
+std::map<uint32_t, Calendar> DateTime::calender_{};
 
 bool DateTime::date_time_from_string(const std::string &str)
 {
@@ -40,18 +42,21 @@ bool DateTime::date_time_from_string(const std::string &str)
 	}
 
 	day_ = day_lut[date_time_comp[0]];
+	assert(day_ != Day::none);
 
-	if (day_ == Day::none) {
-		day_lut.erase(date_time_comp[0]);
-		return false;
-	}
 
 	month_ = month_lut[date_time_comp[1]];
+	assert(month_ != Month::none);
 
-	if(month_ == Month::none) {
-		month_lut.erase(date_time_comp[1]);
-		return false;
+
+	const uint32_t year{ static_cast<uint32_t>(atoi(date_time_comp[4].c_str())) };
+
+	assert(year);
+
+	auto it{ calender_.find(year) };
+
+	if (it == std::end(calender_)) {
+		calender_[year] = Calendar{ year };
 	}
-
 	return true;
 }
