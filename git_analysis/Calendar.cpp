@@ -6,6 +6,7 @@ using namespace GB;
 Calendar::Calendar(uint32_t year)
 	: year_{year}
 {
+	generate();
 }
 
 
@@ -53,3 +54,9 @@ uint32_t Calendar::number_of_days(const Month &month)
 	return days;
 }
 
+void Calendar::generate() {
+	for (Month month{ Month::january }; month <= Month::december;
+		month++) {
+
+	}
+}

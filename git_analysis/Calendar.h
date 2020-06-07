@@ -30,8 +30,10 @@ namespace GB {
 			september,
 			october,
 			november,
-			december
+			december	
 		};
+
+		
 
 		Calendar() = default;
 		explicit Calendar(uint32_t year);
@@ -39,6 +41,16 @@ namespace GB {
 		Calendar::Day day_of_month(const uint32_t &day, const Month &month);
 	private:
 		uint32_t year_{};
+		void generate();
 	};
+
+	Calendar::Month& operator++(Calendar::Month& e)
+	{
+		if (e == Calendar::Month::december) {
+			throw std::out_of_range("for Month& operator ++ (Month&)");
+		}
+		e = Calendar::Month(static_cast<std::underlying_type<Calendar::Month>::type>(e) + 1);
+		return e;
+	}
 }
 
