@@ -1,4 +1,6 @@
 #include "GitCommitCreator.h"
+#include <iostream>
+#include <fstream>
 
 using namespace GB;
 
@@ -101,7 +103,31 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 			}
 		}
 
+		// Fix the last commit
+		if (current_node_ptr == nullptr) {
+			commit.set_date(text);
+		}
 		commits_.emplace_back(commit);
+	}
+
+	std::cout << "Found " << commit_count << " commits." << std::endl;
+	return true;
+}
+
+bool GitCommitCreator::process(PlatformOS &os)
+{
+	std::string batch_filename{ os.get_random_string(20) };
+	batch_filename.append(os.get_shell_extension());
+
+	for (auto &commit : commits_) {
+		std::ofstream batch_file{ batch_filename.c_str() };
+		std::string git_out_filename{ os.get_random_string(20) };
+		git_out_filename.append(".gof");
+
+		batch_file << "git.exe checkout " << commit.get_hash();
+		batch_file << "git.exe ls-files >" << git_out_filename << std::endl;		
+		batch_file.close();
+		os.run_application("", batch_filename);
 	}
 	return true;
 }

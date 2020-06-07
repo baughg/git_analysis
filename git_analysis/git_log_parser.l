@@ -111,7 +111,9 @@ int main(int argc, char** argv) {
   yy::parser parser{};
   parser.parse();
   log_in.close();
-
+  os.delete_file(batch_filename);
+  os.delete_file(git_log_filename);
   GitCommitCreator creator {end_node_ptr};
+  creator.process(os);
   return 0;
 }

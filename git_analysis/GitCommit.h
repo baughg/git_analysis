@@ -13,6 +13,7 @@ namespace GB {
 		void set_message(const std::string &message) { message_ = message; }
 		void set_merge(const std::string &merge) { merge_ = merge; }
 		void set_commit_number(const int32_t &num) { commit_number_ = num; }
+		const std::string &get_hash() const;
 	private:
 		std::string author_{};
 		std::string email_{};

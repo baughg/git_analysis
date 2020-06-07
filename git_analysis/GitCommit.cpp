@@ -13,6 +13,11 @@ void GitCommit::set_date(const std::string &date_str) {
 	message_ = date_str.substr(position + 1, msg_len);
 }
 
+const std::string &GitCommit::get_hash() const
+{
+	return hash_;
+}
+
 void GitCommit::set_author(const std::string &author) { 
 	std::deque<std::string> str_comp{};
 	StringUtility::split_string(author, str_comp, '<');
