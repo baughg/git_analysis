@@ -16,6 +16,21 @@ bool DateTime::date_time_from_string(const std::string &str)
 		{"Sat",Day::saturday },
 	};
 
+	static std::map<std::string, Month> month_lut{
+		{"Jan",Month::january},
+		{"Feb",Month::february},
+		{"Mar",Month::march},
+		{"Apr",Month::april},
+		{"May",Month::may},
+		{"Jun",Month::june},
+		{"Jul",Month::july },
+		{"Aug",Month::august },
+		{"Sep",Month::september },
+		{"Oct",Month::october },
+		{"Nov",Month::november },
+		{"Dec",Month::december }
+	};
+
 	std::deque<std::string> date_time_comp{};
 
 	StringUtility::split_string(str, date_time_comp, ' ');
@@ -30,5 +45,13 @@ bool DateTime::date_time_from_string(const std::string &str)
 		day_lut.erase(date_time_comp[0]);
 		return false;
 	}
+
+	month_ = month_lut[date_time_comp[1]];
+
+	if(month_ == Month::none) {
+		month_lut.erase(date_time_comp[1]);
+		return false;
+	}
+
 	return true;
 }

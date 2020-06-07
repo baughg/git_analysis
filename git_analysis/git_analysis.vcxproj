@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Calendar.cpp" />
     <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="getopt.c" />
     <ClCompile Include="GitCommit.cpp" />
@@ -131,6 +132,7 @@
     <ClCompile Include="StringUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Calendar.h" />
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="getopt.h" />
     <ClInclude Include="GitCommit.h" />
