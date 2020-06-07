@@ -12,8 +12,7 @@ Calendar::Calendar(uint32_t year)
 
 Calendar::Day Calendar::day_of_month(const uint32_t &day, const Month &mon)
 {
-	const uint32_t month{ 
-		static_cast<uint32_t>(mon) };
+	const uint32_t month{ static_cast<uint32_t>(mon) };
 
 	uint32_t year{ year_ };
 	static uint32_t t[] = { 0, 3, 2, 5, 0, 3, 5, 1,
