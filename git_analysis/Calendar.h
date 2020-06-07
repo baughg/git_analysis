@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <map>
 
 namespace GB {
 	class Calendar
@@ -34,6 +35,7 @@ namespace GB {
 
 		Calendar() = default;
 		explicit Calendar(uint32_t year);
+		uint32_t number_of_days(const Month &month);
 	private:
 		uint32_t year_{};
 	};
