@@ -52,7 +52,7 @@ bool DateTime::date_time_from_string(const std::string &str)
 	const uint32_t year{ static_cast<uint32_t>(atoi(date_time_comp[4].c_str())) };
 
 	assert(year);
-
+	year_ = year;
 	auto it{ calender_.find(year) };
 
 	if (it == std::end(calender_)) {

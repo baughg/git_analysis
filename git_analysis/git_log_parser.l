@@ -6,7 +6,10 @@
   #include "unistd.h"
   #include <fstream>
   #include "git_log_parser.tab.hh"
-  #include "GitCommitCreator.h"
+  #include "GitCommitCreator.h"  
+  #include "../platform_os/platform_os/WindowsPlatform.h"
+  #include <cassert>
+
   using namespace std;
   using namespace GB;
   //extern int yylex();
@@ -85,22 +88,28 @@ int yylex(yy::parser::semantic_type *val) {
 void yy::parser::error (const std::string& msg)
 {
   std::cerr << "Error: " << msg << std::endl;
+  assert(false);
 }
 
 int main(int argc, char** argv) {
-  std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
+  //std::string git_log_filename{ "C:\\development\\nce\\vscxggbwkfnqduxwfnfo" };
+  GB::WindowsPlatform os{};
+	std::cout << "git log running..." << std::endl;
+	std::string batch_filename{ os.get_random_string(20) };
+	batch_filename.append(os.get_shell_extension());
+	std::ofstream batch_file{ batch_filename.c_str() };
+	std::string git_log_filename{ os.get_random_string(20) };	
+	batch_file << "git.exe log >";
+	batch_file << git_log_filename << std::endl;
+  batch_file.close();
+  os.run_application("", batch_filename);
+
   std::ifstream log_in {git_log_filename.c_str()};
   yyFlexLexer lexer{ log_in, std::cout};
   lexer_ptr = &lexer;
 
   yy::parser parser{};
-
   parser.parse();
-
-  // while (lexer.yylex())
-  // {
-
-  // }
   log_in.close();
 
   GitCommitCreator creator {end_node_ptr};
