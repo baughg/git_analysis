@@ -13,6 +13,7 @@ bool CommitGraph::build(const std::string &filelist) {
 	const std::string  root_node_name{ "root" };
 
 	top_node_ = std::make_shared<GraphNode>(root_node_name);
+	top_node_->is_root();
 	node_lut_[root_node_name] = top_node_;
 
 	for (auto &file : files) {
