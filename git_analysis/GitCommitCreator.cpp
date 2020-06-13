@@ -117,16 +117,36 @@ bool GitCommitCreator::process(PlatformOS &os)
 {
 	std::string batch_filename{ os.get_random_string(20) };
 	batch_filename.append(os.get_shell_extension());
+	std::string git_out_filename{ os.get_random_string(20) };
+	std::string git_diff_filename{ git_out_filename };
+	git_out_filename.append(".gof");
+	git_diff_filename.append(".diff");
+	std::string prev_hash_str{};
+	
 
 	for (auto &commit : commits_) {
-		std::ofstream batch_file{ batch_filename.c_str() };
-		std::string git_out_filename{ os.get_random_string(20) };
-		git_out_filename.append(".gof");
-		std::cout << "git checkout " << commit.get_hash() << std::endl;
-		batch_file << "git.exe checkout " << commit.get_hash() << std::endl;
-		batch_file << "git.exe ls-files >" << git_out_filename << std::endl;		
-		batch_file.close();
-		os.run_application("", batch_filename);
+		const std::string hash_str{ commit.get_hash() };
+
+		if (prev_hash_str.length()) {
+			std::ofstream batch_file{ batch_filename.c_str() };			
+			batch_file << "git.exe diff --name-only " 
+				<< prev_hash_str 
+				<< " "
+				<< hash_str << " >"
+				<< git_diff_filename << std::endl;
+			batch_file.close();
+			os.run_application("", batch_filename);
+		}
+
+		{
+			std::ofstream batch_file{ batch_filename.c_str() };			
+			std::cout << "git checkout " << hash_str << std::endl;
+			batch_file << "git.exe checkout " << hash_str << std::endl;
+			batch_file << "git.exe ls-files >" << git_out_filename << std::endl;
+			batch_file.close();
+			os.run_application("", batch_filename);
+		}
+		prev_hash_str = hash_str;
 	}
 	return true;
 }
