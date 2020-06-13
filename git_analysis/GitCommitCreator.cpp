@@ -29,8 +29,7 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 		start_node_ptr = current_node_ptr;
 		current_node_ptr = current_node_ptr->get_prev_node();
 	}
-
-	commits_.reserve(commit_count);
+		
 	current_node_ptr = start_commit_node_ptr;
 
 	if (!current_node_ptr)
@@ -107,7 +106,7 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 		if (current_node_ptr == nullptr) {
 			commit.set_date(text);
 		}
-		commits_.emplace_back(commit);
+		commits_.emplace_front(commit);
 	}
 
 	std::cout << "Found " << commit_count << " commits." << std::endl;

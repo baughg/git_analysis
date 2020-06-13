@@ -2,7 +2,7 @@
 #include "GitCommit.h"
 #include "GitLogNode.h"
 #include "../platform_os/platform_os/PlatformOS.h"
-#include <vector>
+#include <deque>
 
 namespace GB {
 	class GitCommitCreator
@@ -13,7 +13,7 @@ namespace GB {
 		bool process(PlatformOS &os);
 	private:
 		bool parse_nodes(GitLogNode* end_node_ptr);
-		std::vector<GitCommit> commits_{};		
+		std::deque<GitCommit> commits_{};		
 		bool nodes_ok_{false};
 	};
 }
