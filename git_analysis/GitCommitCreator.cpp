@@ -146,6 +146,8 @@ bool GitCommitCreator::process(PlatformOS &os)
 			batch_file.close();
 			os.run_application("", batch_filename);
 		}
+
+		commit.generate_graph(git_out_filename, git_diff_filename);
 		prev_hash_str = hash_str;
 	}
 	return true;

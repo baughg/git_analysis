@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdint>
 #include "DateTime.h"
+#include "CommitGraph.h"
 
 namespace GB {
 	class GitCommit
@@ -14,6 +15,8 @@ namespace GB {
 		void set_merge(const std::string &merge) { merge_ = merge; }
 		void set_commit_number(const int32_t &num) { commit_number_ = num; }
 		const std::string &get_hash() const;
+		void generate_graph(
+			const std::string &filelist, const std::string &filediff);
 	private:
 		std::string author_{};
 		std::string email_{};
@@ -23,6 +26,7 @@ namespace GB {
 		std::string merge_{};
 		int32_t commit_number_{};
 		DateTime date_time_{};
+		CommitGraph graph_{};
 	};
 }
 

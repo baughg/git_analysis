@@ -13,6 +13,12 @@ void GitCommit::set_date(const std::string &date_str) {
 	message_ = date_str.substr(position + 1, msg_len);
 }
 
+void GitCommit::generate_graph(
+	const std::string &filelist, const std::string &filediff)
+{
+	graph_.build(filelist);
+}
+
 const std::string &GitCommit::get_hash() const
 {
 	return hash_;

@@ -122,12 +122,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Calendar.cpp" />
+    <ClCompile Include="CommitGraph.cpp" />
     <ClCompile Include="DateTime.cpp" />
     <ClCompile Include="getopt.c" />
     <ClCompile Include="GitCommit.cpp" />
     <ClCompile Include="GitCommitCreator.cpp" />
     <ClCompile Include="GitLogNode.cpp" />
     <ClCompile Include="git_log_parser.tab.cc" />
+    <ClCompile Include="GraphNode.cpp" />
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="lex.yy.cc" />
     <ClCompile Include="main.cpp" />
@@ -137,12 +139,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Calendar.h" />
+    <ClInclude Include="CommitGraph.h" />
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="getopt.h" />
     <ClInclude Include="GitCommit.h" />
     <ClInclude Include="GitCommitCreator.h" />
     <ClInclude Include="GitLogNode.h" />
     <ClInclude Include="git_log_parser.tab.hh" />
+    <ClInclude Include="GraphNode.h" />
     <ClInclude Include="IO.h" />
     <ClInclude Include="platform_os\platform_os\PlatformOS.h" />
     <ClInclude Include="platform_os\platform_os\WindowsPlatform.h" />
