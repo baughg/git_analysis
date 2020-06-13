@@ -18,8 +18,12 @@ bool IO::read_lines(
 	while (!text_file.eof()) {
 		std::string line_in{};
 		getline(text_file, line_in);
-		line_count++;
-		char_count += static_cast<uint32_t>(line_in.length());
+		const auto len{ line_in.length() };
+
+		if (len) {
+			line_count++;
+			char_count += static_cast<uint32_t>(len);
+		}
 	}
 
 	return line_count > 0;
@@ -38,7 +42,11 @@ bool IO::read_text(
 	while (!text_file.eof()) {
 		std::string line_in{};
 		getline(text_file, line_in);
-		lines.emplace_back(std::move(line_in));
+		const auto len{ line_in.length() };
+
+		if (len) {
+			lines.emplace_back(std::move(line_in));
+		}
 	}
 
 	return lines.size() > 0;
