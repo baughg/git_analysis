@@ -20,6 +20,7 @@ namespace GB {
 		std::map<std::string, std::shared_ptr<GraphNode>> node_lut_{};
 		CommitGraph* reference_graph_ptr_{};
 		std::string commit_hash_{};
+		uint32_t file_count_{};
 	};
 }
 

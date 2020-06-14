@@ -20,7 +20,7 @@ bool CommitGraph::build(
 	top_node_ = std::make_shared<GraphNode>(root_node_name);
 	top_node_->is_root();
 	node_lut_[root_node_name] = top_node_;
-	
+	file_count_ = static_cast<uint32_t>(files.size());
 
 	for (auto &file : files) {
 		std::deque<std::string> nodes{};
@@ -65,7 +65,9 @@ bool CommitGraph::build(
 		}
 	}
 
-	std::cout << "Graph " << commit_hash_ << " nodes: " << node_lut_.size() << std::endl;
+	std::cout << "Graph " << commit_hash_ 
+		<< " nodes: " << node_lut_.size() 
+		<< " files: " << file_count_ << std::endl;
 
 	std::map<std::string, uint32_t> changed_files;
 
