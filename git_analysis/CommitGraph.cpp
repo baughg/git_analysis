@@ -59,6 +59,16 @@ bool CommitGraph::build(const std::string &filelist) {
 		}
 	}
 
+	for (;;) {
+		bool do_process{ false };
 
+		for (auto &it : node_lut_) {
+			do_process |= it.second->process();
+		}
+
+		if (!do_process) {
+			break;
+		}
+	}
 	return true;
 }

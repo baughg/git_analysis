@@ -13,8 +13,8 @@ namespace GB {
 
 		static bool read_lines(
 			const std::string &filename,
-			uint32_t &line_count,
-			uint32_t &char_count);
+			uint64_t &line_count,
+			uint64_t &char_count);
 	};
 }
 

@@ -5,8 +5,8 @@ using namespace GB;
 
 bool IO::read_lines(
 	const std::string &filename,
-	uint32_t &line_count,
-	uint32_t &char_count) {
+	uint64_t &line_count,
+	uint64_t &char_count) {
 	std::ifstream text_file(filename.c_str());
 	line_count = 0;
 	char_count = 0;
@@ -22,7 +22,7 @@ bool IO::read_lines(
 
 		if (len) {
 			line_count++;
-			char_count += static_cast<uint32_t>(len);
+			char_count += static_cast<uint64_t>(len);
 		}
 	}
 
