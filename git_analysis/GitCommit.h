@@ -8,7 +8,10 @@ namespace GB {
 	class GitCommit
 	{	
 	public:
-		void set_hash(const std::string &hash) { hash_ = hash; }
+		void set_hash(const std::string &hash) {
+			graph_.set_hash(hash);
+			hash_ = hash; 
+		}
 		void set_author(const std::string &author);
 		void set_date(const std::string &date_str);
 		void set_message(const std::string &message) { message_ = message; }

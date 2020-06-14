@@ -1,6 +1,7 @@
 #include "CommitGraph.h"
 #include "StringUtility.h"
 #include <deque>
+#include <iostream>
 
 using namespace GB;
 
@@ -19,6 +20,7 @@ bool CommitGraph::build(
 	top_node_ = std::make_shared<GraphNode>(root_node_name);
 	top_node_->is_root();
 	node_lut_[root_node_name] = top_node_;
+	
 
 	for (auto &file : files) {
 		std::deque<std::string> nodes{};
@@ -62,6 +64,8 @@ bool CommitGraph::build(
 			node = child_node;
 		}
 	}
+
+	std::cout << "Graph " << commit_hash_ << " nodes: " << node_lut_.size() << std::endl;
 
 	std::map<std::string, uint32_t> changed_files;
 
