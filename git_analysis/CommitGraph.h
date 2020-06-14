@@ -21,6 +21,7 @@ namespace GB {
 		CommitGraph* reference_graph_ptr_{};
 		std::string commit_hash_{};
 		uint32_t file_count_{};
+		int32_t source_code_file_count_{};
 	};
 }
 

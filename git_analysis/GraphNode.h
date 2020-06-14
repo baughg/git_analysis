@@ -43,6 +43,7 @@ namespace GB {
 		void get_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		void set_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		bool process();
+		bool is_source_code() { return source_type_ != SourceCodeType::none; }
 	private:
 		std::shared_ptr<GraphNode> next_{};
 		std::shared_ptr<GraphNode> previous_{};

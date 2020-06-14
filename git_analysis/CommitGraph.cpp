@@ -110,17 +110,31 @@ bool CommitGraph::build(
 		}
 	}
 
+	source_code_file_count_ = 0;
+
 	if (reference_graph_ptr_) {
 		for (auto &node_name : node_lut_) {
 			const auto file{ node_name.first };
 			auto rit{ reference_graph_ptr_->node_lut_.find(file) };
 			auto it{ node_lut_.find(file) };
 
+			if (it->second->is_source_code()) {
+				source_code_file_count_++;
+			}
+
 			if (it != std::end(node_lut_) &&
 				rit != std::end(reference_graph_ptr_->node_lut_)) {
 				it->second->set_previous(rit->second);
 				rit->second->set_next(it->second);
 			}
+		}
+	}
+	else {
+		for (auto &node_name : node_lut_) {						
+			if (node_name.second->is_source_code()) {
+				source_code_file_count_++;
+			}
+
 		}
 	}
 	return true;
