@@ -90,6 +90,8 @@ bool CommitGraph::build(
 				uint64_t ch_cnt{};
 				rit->second->get_line_and_char_count(ln_cnt, ch_cnt);
 				it->second->set_line_and_char_count(ln_cnt, ch_cnt);
+
+				it->second->set_source_type(rit->second->get_source_type());
 			}
 		}
 	}
@@ -137,6 +139,6 @@ bool CommitGraph::build(
 	std::cout << "Graph " << commit_hash_
 		<< " nodes: " << node_lut_.size()
 		<< " files: " << file_count_
-		<< "src files: " << source_code_file_count_ << std::endl;
+		<< " src files: " << source_code_file_count_ << std::endl;
 	return true;
 }
