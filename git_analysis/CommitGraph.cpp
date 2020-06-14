@@ -92,6 +92,7 @@ bool CommitGraph::build(
 				it->second->set_line_and_char_count(ln_cnt, ch_cnt);
 
 				it->second->set_source_type(rit->second->get_source_type());
+				it->second->set_terminal_node(rit->second->is_terminal_node());
 			}
 		}
 	}

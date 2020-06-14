@@ -44,6 +44,8 @@ namespace GB {
 		void set_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		bool process();
 		bool is_source_code() { return source_type_ != SourceCodeType::none; }
+		bool is_terminal_node() { return terminal_node_; }
+		void set_terminal_node(const bool &terminal) { terminal_node_ = terminal; }
 		SourceCodeType get_source_type() { return source_type_; }
 		void set_source_type(const SourceCodeType &type) { source_type_ = type; }
 	private:
