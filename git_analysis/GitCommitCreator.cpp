@@ -152,5 +152,14 @@ bool GitCommitCreator::process(PlatformOS &os)
 		prev_commit_graph_ptr = commit.get_reference_graph();
 		prev_hash_str = hash_str;
 	}
+
+	std::ofstream batch_file{ batch_filename.c_str() };
+	std::cout << "git checkout master" << std::endl;
+	batch_file << "git.exe checkout master" << std::endl;	
+	batch_file.close();
+	os.run_application("", batch_filename);
+	os.delete_file(batch_filename);
+	os.delete_file(git_diff_filename);
+	os.delete_file(git_out_filename);
 	return true;
 }
