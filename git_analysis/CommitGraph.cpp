@@ -107,7 +107,8 @@ bool CommitGraph::build(
 	}
 
 	if (reference_graph_ptr_) {
-		for (auto &file : files) {
+		for (auto &node_name : node_lut_) {
+			const auto file{ node_name.first };
 			auto rit{ reference_graph_ptr_->node_lut_.find(file) };
 			auto it{ node_lut_.find(file) };
 
