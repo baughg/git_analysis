@@ -2,6 +2,24 @@
 
 using namespace GB;
 
+std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
+	{"cpp",GraphNode::SourceCodeType::cpp},
+	{"hpp",GraphNode::SourceCodeType::hpp},
+	{"asm",GraphNode::SourceCodeType::assembly},
+	{"c",GraphNode::SourceCodeType::c},
+	{"cc",GraphNode::SourceCodeType::cc},
+	{"h",GraphNode::SourceCodeType::h},
+	{"hh",GraphNode::SourceCodeType::hh},
+	{"v",GraphNode::SourceCodeType::v},
+	{"sv",GraphNode::SourceCodeType::sv},
+	{"py",GraphNode::SourceCodeType::py},
+	{"inc",GraphNode::SourceCodeType::inc},
+	{"Makefile",GraphNode::SourceCodeType::makefile},
+	{"sh",GraphNode::SourceCodeType::sh},
+	{"bat",GraphNode::SourceCodeType::bat},
+	{"csh",GraphNode::SourceCodeType::csh}
+};
+
 GraphNode::GraphNode(const std::string &name,const std::string &short_name)
 	: name_{ name },
 	short_name_{ short_name }
@@ -44,7 +62,7 @@ bool GraphNode::process() {
 		character_count_ = char_count;
 	}
 	else if(!read_file_){
-		terminal_node_ = true;
+		terminal_node_ = true;		
 		IO::read_lines(name_, line_count_, character_count_);
 		read_file_ = true;
 	}
