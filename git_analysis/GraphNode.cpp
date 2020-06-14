@@ -7,6 +7,14 @@ GraphNode::GraphNode(const std::string &name)
 {
 }
 
+void GraphNode::set_line_and_char_count(
+	uint64_t &line_count, uint64_t &char_count)
+{
+	line_count_ = line_count;
+	character_count_ = char_count;
+	read_file_ = true;
+}
+
 void GraphNode::get_line_and_char_count(
 	uint64_t &line_count, uint64_t &char_count)
 {

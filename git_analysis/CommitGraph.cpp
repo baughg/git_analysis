@@ -7,10 +7,13 @@ using namespace GB;
 bool CommitGraph::build(
 	const std::string &filelist, const std::string &filediff) {
 	std::deque<std::string> files{};
+	std::deque<std::string> diff_files{};
 
 	if (!IO::read_text(filelist, files)) {
 		return false;
 	}
+
+	const bool have_diff{ IO::read_text(filediff, diff_files) };
 	const std::string  root_node_name{ "root" };
 
 	top_node_ = std::make_shared<GraphNode>(root_node_name);
@@ -57,6 +60,16 @@ bool CommitGraph::build(
 			node->add_child(child_node);
 			child_node->add_parent(node);
 			node = child_node;
+		}
+	}
+
+	if (reference_graph_ptr_) {
+		for (auto &file : diff_files) {
+			auto it{ node_lut_.find(file) };
+
+			if (it != std::end(node_lut_)) {
+
+			}
 		}
 	}
 
