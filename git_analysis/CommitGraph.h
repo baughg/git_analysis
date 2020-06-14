@@ -9,8 +9,8 @@ namespace GB {
 	{
 	public:
 		bool build(const std::string &filelist, const std::string &filediff);
-		void set_reference_graph(CommitGraph &reference_graph) {
-			reference_graph_ptr_ = &reference_graph;
+		void set_reference_graph(CommitGraph *reference_graph) {
+			reference_graph_ptr_ = reference_graph;
 		}
 	private:
 		std::shared_ptr<GraphNode> top_node_{};

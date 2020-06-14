@@ -28,6 +28,7 @@ namespace GB {
 
 		void is_root() { is_root_ = true; }
 		void get_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
+		void set_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		bool process();
 	private:
 		std::shared_ptr<GraphNode> parent_{};

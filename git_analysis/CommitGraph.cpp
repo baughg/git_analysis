@@ -65,10 +65,15 @@ bool CommitGraph::build(
 
 	if (reference_graph_ptr_) {
 		for (auto &file : diff_files) {
+			auto rit{ reference_graph_ptr_->node_lut_.find(file) };
 			auto it{ node_lut_.find(file) };
 
-			if (it != std::end(node_lut_)) {
-
+			if (it != std::end(node_lut_) &&
+				rit != std::end(reference_graph_ptr_->node_lut_)) {
+				uint64_t ln_cnt{};
+				uint64_t ch_cnt{};
+				rit->second->get_line_and_char_count(ln_cnt, ch_cnt);
+				it->second->set_line_and_char_count(ln_cnt, ch_cnt);
 			}
 		}
 	}

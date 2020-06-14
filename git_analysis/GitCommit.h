@@ -17,6 +17,12 @@ namespace GB {
 		const std::string &get_hash() const;
 		void generate_graph(
 			const std::string &filelist, const std::string &filediff);
+
+		CommitGraph *get_reference_graph() { return &graph_; }
+
+		void set_reference_graph(CommitGraph *ref_graph_ptr) {
+			graph_.set_reference_graph(ref_graph_ptr);
+		}
 	private:
 		std::string author_{};
 		std::string email_{};

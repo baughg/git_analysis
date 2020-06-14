@@ -122,7 +122,7 @@ bool GitCommitCreator::process(PlatformOS &os)
 	git_out_filename.append(".gof");
 	git_diff_filename.append(".diff");
 	std::string prev_hash_str{};
-	
+	CommitGraph *prev_commit_graph_ptr{};
 
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
@@ -147,7 +147,9 @@ bool GitCommitCreator::process(PlatformOS &os)
 			os.run_application("", batch_filename);
 		}
 
+		commit.set_reference_graph(prev_commit_graph_ptr);
 		commit.generate_graph(git_out_filename, git_diff_filename);
+		prev_commit_graph_ptr = commit.get_reference_graph();
 		prev_hash_str = hash_str;
 	}
 	return true;
