@@ -63,8 +63,20 @@ bool CommitGraph::build(
 		}
 	}
 
+	std::map<std::string, uint32_t> changed_files;
+
+	for (auto &file : diff_files) {
+		changed_files[file]++;
+	}
+
 	if (reference_graph_ptr_) {
-		for (auto &file : diff_files) {
+		for (auto &file : files) {
+			auto cit{ changed_files.find(file) };
+
+			if (cit != std::end(changed_files)) {
+				continue;
+			}
+
 			auto rit{ reference_graph_ptr_->node_lut_.find(file) };
 			auto it{ node_lut_.find(file) };
 
