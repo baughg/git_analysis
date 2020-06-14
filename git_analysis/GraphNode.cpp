@@ -2,8 +2,9 @@
 
 using namespace GB;
 
-GraphNode::GraphNode(const std::string &name)
-	: name_{ name }
+GraphNode::GraphNode(const std::string &name,const std::string &short_name)
+	: name_{ name },
+	short_name_{ short_name }
 {
 }
 
@@ -24,6 +25,7 @@ void GraphNode::get_line_and_char_count(
 
 bool GraphNode::process() {
 	const bool has_children{ children_.size() > 0 };
+	terminal_node_ |= children_.size() == 1 && parent_ != nullptr;
 
 	if (has_children) {
 		uint64_t line_count{};
@@ -42,6 +44,7 @@ bool GraphNode::process() {
 		character_count_ = char_count;
 	}
 	else if(!read_file_){
+		terminal_node_ = true;
 		IO::read_lines(name_, line_count_, character_count_);
 		read_file_ = true;
 	}

@@ -10,7 +10,7 @@ namespace GB {
 	class GraphNode
 	{
 	public:
-		GraphNode(const std::string &name);
+		GraphNode(const std::string &name, const std::string &short_name);
 		void add_child(std::shared_ptr<GraphNode> node) {
 			auto it{ child_map_.find(node) };
 
@@ -45,10 +45,12 @@ namespace GB {
 		std::deque< std::shared_ptr<GraphNode>> children_{};
 		std::map<std::shared_ptr<GraphNode>, uint32_t> child_map_{};
 		std::string name_{};
+		std::string short_name_{};
 		bool is_root_{ false };
 		uint64_t line_count_{};
 		uint64_t character_count_{};
 		bool read_file_{ false };
+		bool terminal_node_{ false };
 	};
 }
 
