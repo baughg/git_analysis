@@ -101,5 +101,18 @@ bool CommitGraph::build(
 			break;
 		}
 	}
+
+	if (reference_graph_ptr_) {
+		for (auto &file : files) {
+			auto rit{ reference_graph_ptr_->node_lut_.find(file) };
+			auto it{ node_lut_.find(file) };
+
+			if (it != std::end(node_lut_) &&
+				rit != std::end(reference_graph_ptr_->node_lut_)) {
+				it->second->set_previous(rit->second);
+				rit->second->set_next(it->second);
+			}
+		}
+	}
 	return true;
 }

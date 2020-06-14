@@ -26,11 +26,21 @@ namespace GB {
 			parent_ = node;
 		}
 
+		void set_next(std::shared_ptr<GraphNode> node) {
+			next_ = node;
+		}
+
+		void set_previous(std::shared_ptr<GraphNode> node) {
+			previous_ = node;
+		}
+
 		void is_root() { is_root_ = true; }
 		void get_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		void set_line_and_char_count(uint64_t &line_count, uint64_t &char_count);
 		bool process();
 	private:
+		std::shared_ptr<GraphNode> next_{};
+		std::shared_ptr<GraphNode> previous_{};
 		std::shared_ptr<GraphNode> parent_{};
 		std::deque< std::shared_ptr<GraphNode>> children_{};
 		std::map<std::shared_ptr<GraphNode>, uint32_t> child_map_{};
