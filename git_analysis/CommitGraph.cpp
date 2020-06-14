@@ -58,5 +58,7 @@ bool CommitGraph::build(const std::string &filelist) {
 			node = child_node;
 		}
 	}
+
+
 	return true;
 }

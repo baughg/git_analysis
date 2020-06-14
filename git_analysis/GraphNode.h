@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <memory>
 #include <map>
+#include "IO.h"
 
 namespace GB {
 	class GraphNode
@@ -26,12 +27,17 @@ namespace GB {
 		}
 
 		void is_root() { is_root_ = true; }
+		void get_line_and_char_count(uint32_t &line_count, uint32_t &char_count);
+		bool process();
 	private:
 		std::shared_ptr<GraphNode> parent_{};
 		std::deque< std::shared_ptr<GraphNode>> children_{};
 		std::map<std::shared_ptr<GraphNode>, uint32_t> child_map_{};
 		std::string name_{};
 		bool is_root_{ false };
+		uint32_t line_count_{};
+		uint32_t character_count_{};
+		bool read_file_{ false };
 	};
 }
 
