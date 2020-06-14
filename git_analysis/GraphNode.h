@@ -13,7 +13,7 @@ namespace GB {
 		enum class SourceCodeType {
 			none, cpp, cc, c, h, hpp, hh,
 			assembly, v, sv, makefile, inc, py, sh, csh, bat,
-			readme, txt
+			readme, txt, matlab
 		};
 		GraphNode(const std::string &name, const std::string &short_name);
 		void add_child(std::shared_ptr<GraphNode> node) {

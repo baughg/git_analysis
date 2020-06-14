@@ -1,5 +1,6 @@
 #include "GraphNode.h"
 #include "StringUtility.h"
+#include <iostream>
 
 using namespace GB;
 
@@ -20,7 +21,8 @@ const std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
 	{"bat",GraphNode::SourceCodeType::bat},
 	{"csh",GraphNode::SourceCodeType::csh},
 	{"md",GraphNode::SourceCodeType::readme},
-	{"txt",GraphNode::SourceCodeType::txt}
+	{"txt",GraphNode::SourceCodeType::txt},
+	{"m",GraphNode::SourceCodeType::matlab}
 };
 
 GraphNode::GraphNode(const std::string &name,const std::string &short_name)
@@ -34,7 +36,7 @@ void GraphNode::set_line_and_char_count(
 {
 	line_count_ = line_count;
 	character_count_ = char_count;
-	read_file_ = true;
+	read_file_ = true;	
 }
 
 void GraphNode::get_line_and_char_count(
@@ -78,6 +80,10 @@ bool GraphNode::process() {
 				source_type_ = it->second;
 				IO::read_lines(name_, line_count_, character_count_);
 			}
+		}
+
+		if (source_type_ == SourceCodeType::none) {
+			std::cout << "Skip read: " << short_name_ << std::endl;
 		}
 		read_file_ = true;
 	}
