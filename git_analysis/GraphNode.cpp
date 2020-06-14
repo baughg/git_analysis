@@ -1,8 +1,9 @@
 #include "GraphNode.h"
+#include "StringUtility.h"
 
 using namespace GB;
 
-std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
+const std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
 	{"cpp",GraphNode::SourceCodeType::cpp},
 	{"hpp",GraphNode::SourceCodeType::hpp},
 	{"asm",GraphNode::SourceCodeType::assembly},
@@ -17,7 +18,9 @@ std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
 	{"Makefile",GraphNode::SourceCodeType::makefile},
 	{"sh",GraphNode::SourceCodeType::sh},
 	{"bat",GraphNode::SourceCodeType::bat},
-	{"csh",GraphNode::SourceCodeType::csh}
+	{"csh",GraphNode::SourceCodeType::csh},
+	{"md",GraphNode::SourceCodeType::readme},
+	{"txt",GraphNode::SourceCodeType::txt}
 };
 
 GraphNode::GraphNode(const std::string &name,const std::string &short_name)
@@ -62,8 +65,20 @@ bool GraphNode::process() {
 		character_count_ = char_count;
 	}
 	else if(!read_file_){
-		terminal_node_ = true;		
-		IO::read_lines(name_, line_count_, character_count_);
+		terminal_node_ = true;	
+		std::deque<std::string> filename_comp{};
+		StringUtility::split_string(short_name_, filename_comp, '.');
+		line_count_ = 0;
+		character_count_ = 0;
+
+		if (filename_comp.size()) {
+			auto it{ source_lut_.find(filename_comp.back()) };
+
+			if (it != std::end(source_lut_)) {
+				source_type_ = it->second;
+				IO::read_lines(name_, line_count_, character_count_);
+			}
+		}
 		read_file_ = true;
 	}
 	else {

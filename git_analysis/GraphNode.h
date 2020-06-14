@@ -10,7 +10,11 @@ namespace GB {
 	class GraphNode
 	{
 	public:
-		enum class SourceCodeType { none, cpp,cc, c, h, hpp, hh, assembly, v, sv, makefile, inc,py,sh,csh,bat };
+		enum class SourceCodeType {
+			none, cpp, cc, c, h, hpp, hh,
+			assembly, v, sv, makefile, inc, py, sh, csh, bat,
+			readme, txt
+		};
 		GraphNode(const std::string &name, const std::string &short_name);
 		void add_child(std::shared_ptr<GraphNode> node) {
 			auto it{ child_map_.find(node) };
@@ -52,9 +56,8 @@ namespace GB {
 		uint64_t character_count_{};
 		bool read_file_{ false };
 		bool terminal_node_{ false };
-		bool source_code_{ false };
 		SourceCodeType source_type_{ SourceCodeType::none };
-		static std::map<std::string, SourceCodeType> source_lut_;
+		const static std::map<std::string, SourceCodeType> source_lut_;
 	};
 }
 
