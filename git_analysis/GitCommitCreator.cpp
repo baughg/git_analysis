@@ -113,7 +113,15 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 	return true;
 }
 
-bool GitCommitCreator::process(PlatformOS &os)
+bool GitCommitCreator::process(PlatformOS &os) {
+	if (!generate_commit_graph(os)) {
+		return false;
+	}
+
+	return true;
+}
+
+bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 {
 	std::string batch_filename{ os.get_random_string(20) };
 	batch_filename.append(os.get_shell_extension());

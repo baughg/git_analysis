@@ -10,6 +10,7 @@ namespace GB {
 	public:
 		GitCommitCreator() = delete;
 		GitCommitCreator(GitLogNode *terminal_node);
+		bool generate_commit_graph(PlatformOS &os);
 		bool process(PlatformOS &os);
 	private:
 		bool parse_nodes(GitLogNode* end_node_ptr);
