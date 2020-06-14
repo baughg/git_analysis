@@ -4,7 +4,8 @@
 
 using namespace GB;
 
-bool CommitGraph::build(const std::string &filelist) {
+bool CommitGraph::build(
+	const std::string &filelist, const std::string &filediff) {
 	std::deque<std::string> files{};
 
 	if (!IO::read_text(filelist, files)) {

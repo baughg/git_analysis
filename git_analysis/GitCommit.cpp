@@ -16,7 +16,7 @@ void GitCommit::set_date(const std::string &date_str) {
 void GitCommit::generate_graph(
 	const std::string &filelist, const std::string &filediff)
 {
-	graph_.build(filelist);
+	graph_.build(filelist, filediff);
 }
 
 const std::string &GitCommit::get_hash() const
