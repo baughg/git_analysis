@@ -22,7 +22,9 @@ const std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
 	{"csh",GraphNode::SourceCodeType::csh},
 	{"md",GraphNode::SourceCodeType::readme},
 	{"txt",GraphNode::SourceCodeType::txt},
-	{"m",GraphNode::SourceCodeType::matlab}
+	{"m",GraphNode::SourceCodeType::matlab},
+	{"proto",GraphNode::SourceCodeType::proto},
+	{"rgi",GraphNode::SourceCodeType::rgi}
 };
 
 GraphNode::GraphNode(const std::string &name,const std::string &short_name)
