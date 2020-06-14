@@ -65,11 +65,7 @@ bool CommitGraph::build(
 			child_node->add_parent(node);
 			node = child_node;
 		}
-	}
-
-	std::cout << "Graph " << commit_hash_ 
-		<< " nodes: " << node_lut_.size() 
-		<< " files: " << file_count_ << std::endl;
+	}	
 
 	std::map<std::string, uint32_t> changed_files;
 
@@ -137,5 +133,10 @@ bool CommitGraph::build(
 
 		}
 	}
+
+	std::cout << "Graph " << commit_hash_
+		<< " nodes: " << node_lut_.size()
+		<< " files: " << file_count_
+		<< "src files: " << source_code_file_count_ << std::endl;
 	return true;
 }
