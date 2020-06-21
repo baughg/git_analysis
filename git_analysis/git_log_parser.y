@@ -53,7 +53,7 @@ commit_entry :  GL_COMMIT
                 string_list                 
                 GL_COLON string_list 
                 GL_COLON string_list new_line               
-                commit_msg new_line
+                mult_line_commit_msg
                   ;  
 commit_entries :  commit_entry 
                   | commit_entry commit_entries
@@ -65,7 +65,15 @@ new_line : GL_NEWLINE
 
 new_commit_prefix : GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE
                   ;
-commit_msg : new_commit_prefix string_list
-                  | new_commit_prefix string_list GL_COLON commit_msg                  
+
+
+mult_line_commit_msg : commit_msg new_line
+                      | commit_msg new_line mult_line_commit_msg;
+
+string_with_colon : string_list
+                    | string_list GL_COLON string_with_colon;
+
+commit_msg :      new_commit_prefix                 
+                  | new_commit_prefix string_with_colon                 
                   ;
 %%
