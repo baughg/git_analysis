@@ -159,10 +159,8 @@ namespace yy {
         GL_COMMIT = 260,
         GL_STRING = 261,
         GL_MERGE = 262,
-        GL_COLON = 263,
-        GL_MERGE_PULL = 264,
-        GL_NEWLINE = 265,
-        GL_WHITESPACE = 266
+        GL_NEWLINE = 263,
+        GL_WHITESPACE = 264
       };
     };
 
@@ -461,12 +459,12 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 30,     ///< Last index in yytable_.
-      yynnts_ = 13,  ///< Number of nonterminal symbols.
+      yylast_ = 23,     ///< Last index in yytable_.
+      yynnts_ = 11,  ///< Number of nonterminal symbols.
       yyfinal_ = 9, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 12  ///< Number of tokens.
+      yyntokens_ = 10  ///< Number of tokens.
     };
 
 
@@ -475,7 +473,7 @@ namespace yy {
 
 
 } // yy
-#line 479 "git_log_parser.tab.hh" // lalr1.cc:377
+#line 477 "git_log_parser.tab.hh" // lalr1.cc:377
 
 
 

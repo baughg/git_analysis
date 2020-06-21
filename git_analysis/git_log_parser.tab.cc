@@ -712,18 +712,17 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -11;
+  const signed char parser::yypact_ninf_ = -12;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -2,    -4,     1,    -2,   -11,   -11,   -11,    -4,    -5,   -11,
-     -11,   -11,    -5,     3,   -11,    -4,     5,    -5,    -4,   -11,
-      -5,     7,    -4,     8,    -4,    10,    -4,    -5,     2,     4,
-      -4,   -11,    -5,     9,    14,   -11,     2,    15,    14,    -4,
-     -11,   -11,   -11,   -11
+      -2,    -4,     4,    -2,   -12,   -12,   -12,    -4,    -1,   -12,
+     -12,   -12,    -1,     3,   -12,    -4,    10,    -1,    -4,   -12,
+      -1,    12,    -4,    -1,     5,     9,    -4,   -12,    -1,    11,
+     -12,     5,    13,   -12,   -12
   };
 
   const unsigned char
@@ -731,67 +730,61 @@ namespace yy {
   {
        2,     0,     0,    11,     3,     4,     5,     6,     0,     1,
       12,     7,    13,     8,    14,     0,     0,     0,     0,     9,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      22,    10,     0,     0,    20,    23,    16,     0,    18,     0,
-      17,    15,    19,    21
+       0,     0,     0,     0,     0,     0,    18,    10,     0,     0,
+      19,    16,     0,    17,    15
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-     -11,   -11,   -11,    -1,   -11,   -11,    24,    -8,   -11,    -7,
-     -10,    -9,   -11
+     -12,   -12,   -12,    -7,   -12,   -12,    18,   -11,   -12,    -8,
+     -12
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     2,     7,    34,    16,     3,     4,    13,    30,    31,
-      39,    35,    32
+      -1,     2,     7,     8,    16,     3,     4,    13,    26,    27,
+      28
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-       8,     9,     5,     1,    14,    12,    11,     6,    18,    19,
-      15,    22,    21,    29,    17,    33,    24,    20,    26,    28,
-      37,    23,    38,    25,    36,    27,    41,    10,    42,    40,
-      43
+      11,    14,     5,     1,     9,     6,    19,    12,    17,    21,
+      15,    20,    24,    18,    25,    23,    22,    31,    29,    30,
+      32,    10,    34,    33
   };
 
   const unsigned char
   parser::yycheck_[] =
   {
-       1,     0,     6,     5,    12,    10,     7,    11,     3,    17,
-       7,     4,    20,    11,    15,    11,     8,    18,     8,    27,
-      11,    22,     8,    24,    32,    26,    11,     3,    38,    36,
-      39
+       7,    12,     6,     5,     0,     9,    17,     8,    15,    20,
+       7,    18,    23,     3,     9,    22,     4,    28,     9,    26,
+       9,     3,     9,    31
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     5,    13,    17,    18,     6,    11,    14,    15,     0,
-      18,    15,    10,    19,    19,     7,    16,    15,     3,    19,
-      15,    19,     4,    15,     8,    15,     8,    15,    19,    11,
-      20,    21,    24,    11,    15,    23,    19,    11,     8,    22,
-      21,    11,    22,    23
+       0,     5,    11,    15,    16,     6,     9,    12,    13,     0,
+      16,    13,     8,    17,    17,     7,    14,    13,     3,    17,
+      13,    17,     4,    13,    17,     9,    18,    19,    20,     9,
+      13,    17,     9,    19,     9
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,    12,    13,    13,    14,    14,    15,    15,    16,    16,
-      17,    18,    18,    19,    19,    20,    21,    21,    22,    22,
-      23,    23,    24,    24
+       0,    10,    11,    11,    12,    12,    13,    13,    14,    14,
+      15,    16,    16,    17,    17,    18,    19,    19,    20,    20
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
        0,     2,     0,     1,     1,     1,     1,     2,     0,     3,
-      15,     1,     2,     1,     2,     4,     2,     3,     1,     2,
-       1,     3,     1,     2
+      11,     1,     2,     1,     2,     4,     2,     3,     1,     2
   };
 
 
@@ -802,20 +795,18 @@ namespace yy {
   const parser::yytname_[] =
   {
   "$end", "error", "$undefined", "GL_AUTHOR", "GL_DATE", "GL_COMMIT",
-  "GL_STRING", "GL_MERGE", "GL_COLON", "GL_MERGE_PULL", "GL_NEWLINE",
-  "GL_WHITESPACE", "$accept", "prog", "substring", "string_list",
-  "merge_option", "commit_entry", "commit_entries", "new_line",
-  "new_commit_prefix", "mult_line_commit_msg", "colon_list",
-  "string_with_colon", "commit_msg", YY_NULLPTR
+  "GL_STRING", "GL_MERGE", "GL_NEWLINE", "GL_WHITESPACE", "$accept",
+  "prog", "substring", "string_list", "merge_option", "commit_entry",
+  "commit_entries", "new_line", "new_commit_prefix",
+  "mult_line_commit_msg", "commit_msg", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    37,    37,    37,    39,    40,    42,    43,    45,    45,
-      47,    58,    59,    62,    63,    66,    70,    71,    73,    74,
-      77,    78,    80,    81
+       0,    35,    35,    35,    37,    38,    40,    41,    43,    43,
+      45,    54,    55,    58,    59,    62,    66,    67,    69,    70
   };
 
   // Print the state stack on the debug stream.
@@ -882,9 +873,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11
+       5,     6,     7,     8,     9
     };
-    const unsigned int user_token_number_max_ = 266;
+    const unsigned int user_token_number_max_ = 264;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -897,5 +888,5 @@ namespace yy {
 
 
 } // yy
-#line 901 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 83 "git_log_parser.y" // lalr1.cc:1168
+#line 892 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 72 "git_log_parser.y" // lalr1.cc:1168

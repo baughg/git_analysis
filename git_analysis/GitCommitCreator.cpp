@@ -109,7 +109,7 @@ bool GitCommitCreator::parse_nodes(GitLogNode* end_node_ptr) {
 		commits_.emplace_front(commit);
 	}
 
-	std::cout << "Found " << commit_count << " commits." << std::endl;
+	std::cout << "\nFound " << commit_count << " commits." << std::endl;
 	return true;
 }
 

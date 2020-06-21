@@ -49,22 +49,18 @@
 
 [ ] { return yy::parser::token::GL_WHITESPACE;}
 
-[:] { 
-  create_git_log_node(GitLogNode::NodeType::colon); 
-  return yy::parser::token::GL_COLON; 
-  }
 
-[a-zA-Z0-9/\\<>.@'\"+\-*_=#]+ {
+[a-zA-Z0-9/\\<>.@'\"+\-*_=#(),&\[\]!:;?${}%`|țî…]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
   }
 
-^"Author:" { 
+^"Author: " { 
   create_git_log_node(GitLogNode::NodeType::author);  
   return yy::parser::token::GL_AUTHOR; 
   }
 
-^"Date:" { 
+^"Date: " { 
   create_git_log_node(GitLogNode::NodeType::date); 
   return yy::parser::token::GL_DATE;
   }
@@ -74,7 +70,7 @@
   return yy::parser::token::GL_COMMIT;  
   }
 
-^"Merge:" { 
+^"Merge: " { 
   create_git_log_node(GitLogNode::NodeType::merge);  
   return yy::parser::token::GL_MERGE;  
   }
