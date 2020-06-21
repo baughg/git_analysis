@@ -161,8 +161,8 @@ namespace yy {
         GL_MERGE = 262,
         GL_COLON = 263,
         GL_MERGE_PULL = 264,
-        GL_SPACE = 265,
-        GL_NEWLINE = 266
+        GL_NEWLINE = 265,
+        GL_WHITESPACE = 266
       };
     };
 
@@ -461,9 +461,9 @@ namespace yy {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 26,     ///< Last index in yytable_.
-      yynnts_ = 9,  ///< Number of nonterminal symbols.
-      yyfinal_ = 7, ///< Termination state number.
+      yylast_ = 28,     ///< Last index in yytable_.
+      yynnts_ = 10,  ///< Number of nonterminal symbols.
+      yyfinal_ = 9, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 12  ///< Number of tokens.

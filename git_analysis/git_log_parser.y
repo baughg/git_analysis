@@ -29,14 +29,18 @@
 %token <node_ptr> GL_MERGE
 %token <node_ptr> GL_COLON
 %token <node_ptr> GL_MERGE_PULL
-%token GL_SPACE
+
 %token GL_NEWLINE
+%token GL_WHITESPACE
 
 %%
 prog :  | commit_entries 
                   ;
-string_list : GL_STRING
-                  | GL_STRING string_list
+substring : GL_STRING
+            | GL_WHITESPACE                      
+            ;
+string_list : substring
+                  | substring string_list                  
                                     ; 
 merge_option :    | GL_MERGE string_list new_line
                   ;   
@@ -48,8 +52,7 @@ commit_entry :  GL_COMMIT
                 GL_DATE  
                 string_list                 
                 GL_COLON string_list 
-                GL_COLON string_list new_line
-                merge_request
+                GL_COLON string_list new_line               
                 commit_msg new_line
                   ;  
 commit_entries :  commit_entry 
@@ -60,11 +63,9 @@ new_line : GL_NEWLINE
                   | GL_NEWLINE new_line
                   ;
 
-merge_request : |
-                GL_MERGE_PULL string_list new_line
-                ;
-
-commit_msg : string_list
-                  | string_list GL_COLON commit_msg                  
+new_commit_prefix : GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE
+                  ;
+commit_msg : new_commit_prefix string_list
+                  | new_commit_prefix string_list GL_COLON commit_msg                  
                   ;
 %%

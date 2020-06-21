@@ -45,7 +45,9 @@
 %option c++
 %%
 [\n\r] {return yy::parser::token::GL_NEWLINE; }
-[ \t]        {} 
+[\t]        {} 
+
+[ ] { return yy::parser::token::GL_WHITESPACE;}
 
 [:] { 
   create_git_log_node(GitLogNode::NodeType::colon); 
@@ -76,11 +78,6 @@
   create_git_log_node(GitLogNode::NodeType::merge);  
   return yy::parser::token::GL_MERGE;  
   }
-
-^"Merge pull request #" {
-  create_git_log_node(GitLogNode::NodeType::text,yytext);   
-  return yy::parser::token::GL_MERGE_PULL;
-}
 %%
 
 yyFlexLexer *lexer_ptr{};
