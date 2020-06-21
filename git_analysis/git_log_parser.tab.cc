@@ -722,8 +722,8 @@ namespace yy {
       -2,    -4,     1,    -2,   -11,   -11,   -11,    -4,    -5,   -11,
      -11,   -11,    -5,     3,   -11,    -4,     5,    -5,    -4,   -11,
       -5,     7,    -4,     8,    -4,    10,    -4,    -5,     2,     4,
-      -4,   -11,    -5,     9,    14,   -11,     2,    15,    -4,   -11,
-     -11,   -11
+      -4,   -11,    -5,     9,    14,   -11,     2,    15,    14,    -4,
+     -11,   -11,   -11,   -11
   };
 
   const unsigned char
@@ -732,22 +732,22 @@ namespace yy {
        2,     0,     0,    11,     3,     4,     5,     6,     0,     1,
       12,     7,    13,     8,    14,     0,     0,     0,     0,     9,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      20,    10,     0,     0,    18,    21,    16,     0,     0,    17,
-      15,    19
+      22,    10,     0,     0,    20,    23,    16,     0,    18,     0,
+      17,    15,    19,    21
   };
 
   const signed char
   parser::yypgoto_[] =
   {
      -11,   -11,   -11,    -1,   -11,   -11,    24,    -8,   -11,    -7,
-     -10,   -11
+     -10,    -9,   -11
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
       -1,     2,     7,    34,    16,     3,     4,    13,    30,    31,
-      35,    32
+      39,    35,    32
   };
 
   const unsigned char
@@ -755,7 +755,8 @@ namespace yy {
   {
        8,     9,     5,     1,    14,    12,    11,     6,    18,    19,
       15,    22,    21,    29,    17,    33,    24,    20,    26,    28,
-      37,    23,    38,    25,    36,    27,    40,    10,    41,    39
+      37,    23,    38,    25,    36,    27,    41,    10,    42,    40,
+      43
   };
 
   const unsigned char
@@ -763,7 +764,8 @@ namespace yy {
   {
        1,     0,     6,     5,    12,    10,     7,    11,     3,    17,
        7,     4,    20,    11,    15,    11,     8,    18,     8,    27,
-      11,    22,     8,    24,    32,    26,    11,     3,    38,    36
+      11,    22,     8,    24,    32,    26,    11,     3,    38,    36,
+      39
   };
 
   const unsigned char
@@ -772,8 +774,8 @@ namespace yy {
        0,     5,    13,    17,    18,     6,    11,    14,    15,     0,
       18,    15,    10,    19,    19,     7,    16,    15,     3,    19,
       15,    19,     4,    15,     8,    15,     8,    15,    19,    11,
-      20,    21,    23,    11,    15,    22,    19,    11,     8,    21,
-      11,    22
+      20,    21,    24,    11,    15,    23,    19,    11,     8,    22,
+      21,    11,    22,    23
   };
 
   const unsigned char
@@ -781,15 +783,15 @@ namespace yy {
   {
        0,    12,    13,    13,    14,    14,    15,    15,    16,    16,
       17,    18,    18,    19,    19,    20,    21,    21,    22,    22,
-      23,    23
+      23,    23,    24,    24
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
        0,     2,     0,     1,     1,     1,     1,     2,     0,     3,
-      15,     1,     2,     1,     2,     4,     2,     3,     1,     3,
-       1,     2
+      15,     1,     2,     1,     2,     4,     2,     3,     1,     2,
+       1,     3,     1,     2
   };
 
 
@@ -803,8 +805,8 @@ namespace yy {
   "GL_STRING", "GL_MERGE", "GL_COLON", "GL_MERGE_PULL", "GL_NEWLINE",
   "GL_WHITESPACE", "$accept", "prog", "substring", "string_list",
   "merge_option", "commit_entry", "commit_entries", "new_line",
-  "new_commit_prefix", "mult_line_commit_msg", "string_with_colon",
-  "commit_msg", YY_NULLPTR
+  "new_commit_prefix", "mult_line_commit_msg", "colon_list",
+  "string_with_colon", "commit_msg", YY_NULLPTR
   };
 
 
@@ -813,7 +815,7 @@ namespace yy {
   {
        0,    37,    37,    37,    39,    40,    42,    43,    45,    45,
       47,    58,    59,    62,    63,    66,    70,    71,    73,    74,
-      76,    77
+      77,    78,    80,    81
   };
 
   // Print the state stack on the debug stream.
@@ -895,5 +897,5 @@ namespace yy {
 
 
 } // yy
-#line 899 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 79 "git_log_parser.y" // lalr1.cc:1168
+#line 901 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 83 "git_log_parser.y" // lalr1.cc:1168

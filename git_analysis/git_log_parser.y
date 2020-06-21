@@ -70,8 +70,12 @@ new_commit_prefix : GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE GL_WHITESPACE
 mult_line_commit_msg : commit_msg new_line
                       | commit_msg new_line mult_line_commit_msg;
 
+colon_list : GL_COLON
+            | GL_COLON colon_list
+            ;
+
 string_with_colon : string_list
-                    | string_list GL_COLON string_with_colon;
+                    | string_list colon_list string_with_colon;
 
 commit_msg :      new_commit_prefix                 
                   | new_commit_prefix string_with_colon                 
