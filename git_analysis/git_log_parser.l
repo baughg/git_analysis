@@ -52,7 +52,7 @@
   return yy::parser::token::GL_COLON; 
   }
 
-[a-zA-Z0-9/\\<>.@'\"+\-*_=]+ {
+[a-zA-Z0-9/\\<>.@'\"+\-*_=#]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
   }
@@ -76,6 +76,11 @@
   create_git_log_node(GitLogNode::NodeType::merge);  
   return yy::parser::token::GL_MERGE;  
   }
+
+^"Merge pull request #" {
+  create_git_log_node(GitLogNode::NodeType::text,yytext);   
+  return yy::parser::token::GL_MERGE_PULL;
+}
 %%
 
 yyFlexLexer *lexer_ptr{};

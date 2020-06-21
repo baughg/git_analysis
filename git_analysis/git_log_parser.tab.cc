@@ -712,17 +712,17 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -17;
+  const signed char parser::yypact_ninf_ = -21;
 
   const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -4,    -3,     5,    -4,   -17,    -3,    -2,   -17,   -17,   -17,
-      -2,     2,   -17,    -3,     3,    -2,    -3,   -17,    -2,     7,
-      -3,     6,    -3,     8,    -3,    -2,    -3,    10,    -2,    -3,
-     -17,   -17
+      -3,     1,     3,    -3,   -21,     1,    -6,   -21,   -21,   -21,
+      -6,     4,   -21,     1,     5,    -6,     1,   -21,    -6,     6,
+       1,     9,     1,    10,     1,    -6,    15,     1,     1,    -6,
+      17,    -6,   -21,     1,   -21,   -21
   };
 
   const unsigned char
@@ -730,59 +730,59 @@ namespace yy {
   {
        2,     0,     0,     9,     3,     4,     0,     1,    10,     5,
       11,     6,    12,     0,     0,     0,     0,     7,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,    13,     0,     0,
-       8,    14
+       0,     0,     0,     0,     0,     0,    13,     0,     0,     0,
+      15,     0,    14,     0,     8,    16
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-     -17,   -17,    -1,   -17,   -17,    19,    -8,   -16
+     -21,   -21,    -1,   -21,   -21,    11,    -9,   -21,   -20
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-      -1,     2,    27,    14,     3,     4,    11,    28
+      -1,     2,    30,    14,     3,     4,    11,    28,    31
   };
 
   const unsigned char
   parser::yytable_[] =
   {
-       6,     1,    12,     5,     9,     7,    16,    17,    10,    13,
-      19,    20,    15,    31,    22,    18,    24,    26,    29,    21,
-      30,    23,     8,    25
+       6,    12,     1,     7,     9,    10,    17,     5,    16,    19,
+      20,    13,    15,    35,     8,    18,    26,    22,    24,    21,
+      32,    23,    34,    25,    27,    33,    29
   };
 
   const unsigned char
   parser::yycheck_[] =
   {
-       1,     5,    10,     6,     5,     0,     3,    15,    10,     7,
-      18,     4,    13,    29,     8,    16,     8,    25,     8,    20,
-      28,    22,     3,    24
+       1,    10,     5,     0,     5,    11,    15,     6,     3,    18,
+       4,     7,    13,    33,     3,    16,    25,     8,     8,    20,
+      29,    22,    31,    24,     9,     8,    27
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,     5,    12,    15,    16,     6,    13,     0,    16,    13,
-      10,    17,    17,     7,    14,    13,     3,    17,    13,    17,
-       4,    13,     8,    13,     8,    13,    17,    13,    18,     8,
-      17,    18
+       0,     5,    13,    16,    17,     6,    14,     0,    17,    14,
+      11,    18,    18,     7,    15,    14,     3,    18,    14,    18,
+       4,    14,     8,    14,     8,    14,    18,     9,    19,    14,
+      14,    20,    18,     8,    18,    20
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,    11,    12,    12,    13,    13,    14,    14,    15,    16,
-      16,    17,    17,    18,    18
+       0,    12,    13,    13,    14,    14,    15,    15,    16,    17,
+      17,    18,    18,    19,    19,    20,    20
   };
 
   const unsigned char
   parser::yyr2_[] =
   {
-       0,     2,     0,     1,     1,     2,     0,     3,    16,     1,
-       2,     1,     2,     1,     3
+       0,     2,     0,     1,     1,     2,     0,     3,    17,     1,
+       2,     1,     2,     0,     3,     1,     3
   };
 
 
@@ -793,17 +793,18 @@ namespace yy {
   const parser::yytname_[] =
   {
   "$end", "error", "$undefined", "GL_AUTHOR", "GL_DATE", "GL_COMMIT",
-  "GL_STRING", "GL_MERGE", "GL_COLON", "GL_SPACE", "GL_NEWLINE", "$accept",
-  "prog", "string_list", "merge_option", "commit_entry", "commit_entries",
-  "new_line", "commit_msg", YY_NULLPTR
+  "GL_STRING", "GL_MERGE", "GL_COLON", "GL_MERGE_PULL", "GL_SPACE",
+  "GL_NEWLINE", "$accept", "prog", "string_list", "merge_option",
+  "commit_entry", "commit_entries", "new_line", "merge_request",
+  "commit_msg", YY_NULLPTR
   };
 
 
   const unsigned char
   parser::yyrline_[] =
   {
-       0,    35,    35,    35,    37,    38,    40,    40,    42,    53,
-      54,    57,    58,    61,    62
+       0,    36,    36,    36,    38,    39,    41,    41,    43,    55,
+      56,    59,    60,    63,    64,    67,    68
   };
 
   // Print the state stack on the debug stream.
@@ -870,9 +871,9 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10
+       5,     6,     7,     8,     9,    10,    11
     };
-    const unsigned int user_token_number_max_ = 265;
+    const unsigned int user_token_number_max_ = 266;
     const token_number_type undef_token_ = 2;
 
     if (static_cast<int>(t) <= yyeof_)
@@ -885,5 +886,5 @@ namespace yy {
 
 
 } // yy
-#line 889 "git_log_parser.tab.cc" // lalr1.cc:1167
-#line 64 "git_log_parser.y" // lalr1.cc:1168
+#line 890 "git_log_parser.tab.cc" // lalr1.cc:1167
+#line 70 "git_log_parser.y" // lalr1.cc:1168

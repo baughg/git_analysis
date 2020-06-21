@@ -1,8 +1,8 @@
 #include "MonthlyReport.h"
 
+using namespace GB;
 
-
-MonthlyReport::MonthlyReport()
+MonthlyReport::MonthlyReport(const Calendar::Month &month)
 {
 }
 

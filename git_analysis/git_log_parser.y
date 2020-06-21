@@ -28,6 +28,7 @@
 %token <node_ptr> GL_STRING
 %token <node_ptr> GL_MERGE
 %token <node_ptr> GL_COLON
+%token <node_ptr> GL_MERGE_PULL
 %token GL_SPACE
 %token GL_NEWLINE
 
@@ -48,6 +49,7 @@ commit_entry :  GL_COMMIT
                 string_list                 
                 GL_COLON string_list 
                 GL_COLON string_list new_line
+                merge_request
                 commit_msg new_line
                   ;  
 commit_entries :  commit_entry 
@@ -57,6 +59,10 @@ commit_entries :  commit_entry
 new_line : GL_NEWLINE 
                   | GL_NEWLINE new_line
                   ;
+
+merge_request : |
+                GL_MERGE_PULL string_list new_line
+                ;
 
 commit_msg : string_list
                   | string_list GL_COLON commit_msg                  
