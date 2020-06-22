@@ -50,7 +50,7 @@
 [ ] { return yy::parser::token::GL_WHITESPACE;}
 
 
-[a-zA-Z0-9/\\<>.@'\"+\-*_=#(),&\[\]!:;?${}%`|țî…]+ {
+[a-zA-Z0-9/\\<>.@'\"+\-*_=#(),&\[\]!:;?${}%`|éÓáțî…â©”\0]+ {
   create_git_log_node(GitLogNode::NodeType::text,yytext);   
   return yy::parser::token::GL_STRING;
   }
