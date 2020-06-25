@@ -11,6 +11,16 @@ namespace GB {
 		char branch[256];
 	}graph_stream_header;
 
+	typedef struct {
+		uint32_t node_count{};
+		uint64_t offset_to_next_graph{};
+	}graph_write_header;
+
+	typedef struct {
+		uint64_t node_id{};
+		uint16_t name_len{};
+		uint16_t short_name_len{};
+	}graph_node_table;
 
 	class GraphNodeIO
 	{

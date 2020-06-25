@@ -27,6 +27,9 @@ bool GraphNodeIO::open(
 
 bool GraphNodeIO::write(CommitGraph &graph) {
 	std::map<std::string, uint64_t> node_id_lut{};
+	graph_write_header header{ static_cast<uint32_t>(graph.node_lut_.size()) };
+
+	graph_stream_.write(reinterpret_cast<const char*>(&header),sizeof(header));
 
 	for (auto &it : graph.node_lut_) {
 		const uint64_t node_id{ it.second->node_id_ };
@@ -34,6 +37,15 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		const std::string short_name{ it.second->short_name_ };
 
 		node_id_lut[node_name] = node_id;
+
+		graph_node_table table_entry{ node_id,
+			static_cast<uint16_t>(node_name.length()),
+			static_cast<uint16_t>(short_name.length())
+		};
+
+		graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
+		graph_stream_.write(node_name.c_str(), node_name.length());
+		graph_stream_.write(short_name.c_str(), short_name.length());
 	}
 
 	return true;
