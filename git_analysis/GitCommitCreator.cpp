@@ -1,4 +1,5 @@
 #include "GitCommitCreator.h"
+#include "GraphNodeIO.h"
 #include <iostream>
 #include <fstream>
 
@@ -132,6 +133,8 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	std::string prev_hash_str{};
 	CommitGraph *prev_commit_graph_ptr{};
 	std::deque<CommitGraph*> graph_queue{};
+	GraphNodeIO graph_io{};
+	graph_io.open("GitCommitGraph.gb",static_cast<uint32_t>(commits_.size()),"master");
 
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
@@ -163,7 +166,8 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 		prev_hash_str = hash_str;
 
 		if (graph_queue.size() >= 3) {
-
+			graph_io.write(*graph_queue.front());
+			graph_queue.pop_front();
 		}
 	}
 

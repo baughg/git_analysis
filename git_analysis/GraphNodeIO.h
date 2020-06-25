@@ -1,5 +1,5 @@
 #pragma once
-#include "GraphNode.h"
+#include "CommitGraph.h"
 #include <cstdlib>
 #include <fstream>
 #include <string>
@@ -18,7 +18,7 @@ namespace GB {
 		bool open(const std::string &filename, 
 			const uint32_t &commits, 
 			const std::string &branch);
-
+		bool write(CommitGraph &graph);
 		void close();
 	private:
 		std::ofstream graph_stream_{};

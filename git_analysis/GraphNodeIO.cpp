@@ -25,6 +25,20 @@ bool GraphNodeIO::open(
 	return true;
 }
 
+bool GraphNodeIO::write(CommitGraph &graph) {
+	std::map<std::string, uint64_t> node_id_lut{};
+
+	for (auto &it : graph.node_lut_) {
+		const uint64_t node_id{ it.second->node_id_ };
+		const std::string node_name{ it.second->name_ };
+		const std::string short_name{ it.second->short_name_ };
+
+		node_id_lut[node_name] = node_id;
+	}
+
+	return true;
+}
+
 void GraphNodeIO::close() {
 	graph_stream_.close();
 }
