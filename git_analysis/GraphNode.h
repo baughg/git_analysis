@@ -63,6 +63,8 @@ namespace GB {
 		bool terminal_node_{ false };
 		SourceCodeType source_type_{ SourceCodeType::none };
 		const static std::map<std::string, SourceCodeType> source_lut_;
+		uint64_t node_id_{};
+		static uint64_t global_node_id_;
 	};
 }
 

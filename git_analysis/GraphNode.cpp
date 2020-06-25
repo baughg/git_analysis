@@ -27,9 +27,12 @@ const std::map<std::string, GraphNode::SourceCodeType> GraphNode::source_lut_{
 	{"rgi",GraphNode::SourceCodeType::rgi}
 };
 
+uint64_t GraphNode::global_node_id_ = 0;
+
 GraphNode::GraphNode(const std::string &name,const std::string &short_name)
 	: name_{ name },
-	short_name_{ short_name }
+	short_name_{ short_name },
+	node_id_ { global_node_id_++ }
 {
 }
 
