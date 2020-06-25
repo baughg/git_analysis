@@ -131,6 +131,7 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	git_diff_filename.append(".diff");
 	std::string prev_hash_str{};
 	CommitGraph *prev_commit_graph_ptr{};
+	std::deque<CommitGraph*> graph_queue{};
 
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
@@ -158,7 +159,12 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 		commit.set_reference_graph(prev_commit_graph_ptr);
 		commit.generate_graph(git_out_filename, git_diff_filename);
 		prev_commit_graph_ptr = commit.get_reference_graph();
+		graph_queue.push_back(prev_commit_graph_ptr);
 		prev_hash_str = hash_str;
+
+		if (graph_queue.size() >= 3) {
+
+		}
 	}
 
 	std::ofstream batch_file{ batch_filename.c_str() };
