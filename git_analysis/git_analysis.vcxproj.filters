@@ -63,6 +63,9 @@
     <ClCompile Include="MonthlyReport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GraphNodeIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform_os\platform_os\PlatformOS.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MonthlyReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphNodeIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
