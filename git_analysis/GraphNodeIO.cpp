@@ -48,6 +48,7 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		graph_stream_.write(short_name.c_str(), short_name.length());
 	}
 
+	graph_stream_.flush();
 	return true;
 }
 
