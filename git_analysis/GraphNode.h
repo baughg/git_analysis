@@ -11,13 +11,13 @@ namespace GB {
 	typedef struct {
 		uint64_t parent{};
 		uint32_t children{};
+		uint32_t type;
 		uint64_t line_count{};
 		uint64_t character_count{};
 		int64_t line_count_deltap{};
 		int64_t character_count_deltap{};
 		int64_t line_count_deltan{};
-		int64_t character_count_deltan{};
-		uint32_t type;
+		int64_t character_count_deltan{};		
 	}graph_node_entry;
 
 	class GraphNode

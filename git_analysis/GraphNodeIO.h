@@ -12,8 +12,8 @@ namespace GB {
 	}graph_stream_header;
 
 	typedef struct {
-		uint32_t node_count{};
 		uint64_t offset_to_next_graph{};
+		uint32_t node_count{};		
 	}graph_write_header;
 
 	typedef struct {

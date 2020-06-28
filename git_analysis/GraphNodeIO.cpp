@@ -27,7 +27,7 @@ bool GraphNodeIO::open(
 
 bool GraphNodeIO::write(CommitGraph &graph) {
 	std::map<std::string, uint64_t> node_id_lut{};
-	graph_write_header header{ static_cast<uint32_t>(graph.node_lut_.size()) };
+	graph_write_header header{0, static_cast<uint32_t>(graph.node_lut_.size()) };
 	const auto header_pos{ graph_stream_.tellp() };
 	graph_stream_.write(reinterpret_cast<const char*>(&header),sizeof(header));
 	size_t bytes_written{};
