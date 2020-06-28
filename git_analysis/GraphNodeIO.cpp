@@ -30,6 +30,7 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 	graph_write_header header{ static_cast<uint32_t>(graph.node_lut_.size()) };
 
 	graph_stream_.write(reinterpret_cast<const char*>(&header),sizeof(header));
+	size_t bytes_written{};
 
 	for (auto &it : graph.node_lut_) {
 		const uint64_t node_id{ it.second->node_id_ };
@@ -43,6 +44,10 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 			static_cast<uint16_t>(short_name.length())
 		};
 
+		bytes_written += sizeof(table_entry);
+		bytes_written += table_entry.name_len;
+		bytes_written += table_entry.name_len;
+
 		graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
 		graph_stream_.write(node_name.c_str(), node_name.length());
 		graph_stream_.write(short_name.c_str(), short_name.length());
@@ -54,13 +59,23 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 	for (auto &it : graph.node_lut_) {
 		it.second->get_serialised_entry(entry, child_nodes);
 		graph_stream_.write(reinterpret_cast<const char*>(&entry), sizeof(entry));
+		bytes_written += sizeof(entry);
 
 		if (entry.children) {
 			graph_stream_.write(reinterpret_cast<const char*>(&child_nodes[0]), 
 				sizeof(uint64_t)*entry.children);
+
+			bytes_written += (sizeof(uint64_t) * entry.children);
 		}
 	}
 	graph_stream_.flush();
+
+	for (auto &it : graph.node_lut_) {
+		it.second->clear();
+		graph.node_lut_[it.first] = nullptr;
+	}
+
+	graph.node_lut_.clear();
 	return true;
 }
 

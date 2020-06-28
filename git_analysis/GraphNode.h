@@ -71,6 +71,7 @@ namespace GB {
 		void set_source_type(const SourceCodeType &type) { source_type_ = type; }
 		void get_serialised_entry(
 			graph_node_entry &entry, std::vector<uint64_t> &child_nodes);
+		void clear();
 	private:		
 		std::shared_ptr<GraphNode> parent_{};
 		std::deque< std::shared_ptr<GraphNode>> children_{};

@@ -51,6 +51,12 @@ void GraphNode::get_line_and_char_count(
 	char_count += character_count_;
 }
 
+void GraphNode::clear() {
+	children_.clear();
+	parent_ = nullptr;
+	child_map_.clear();
+}
+
 void GraphNode::get_serialised_entry(
 	graph_node_entry &entry,
 	std::vector<uint64_t> &child_nodes) {
