@@ -171,6 +171,13 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 		}
 	}
 
+	const size_t queue_size{ graph_queue.size() };
+
+	for (size_t q{}; q < queue_size; ++q) {
+		graph_io.write(*graph_queue.front());
+		graph_queue.pop_front();
+	}
+
 	graph_io.close();
 	std::ofstream batch_file{ batch_filename.c_str() };
 	std::cout << "git checkout master" << std::endl;

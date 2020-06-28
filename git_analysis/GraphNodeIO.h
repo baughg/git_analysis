@@ -18,8 +18,8 @@ namespace GB {
 
 	typedef struct {
 		uint64_t node_id{};
-		uint16_t name_len{};
-		uint16_t short_name_len{};
+		uint32_t name_len : 16;
+		uint32_t short_name_len : 16;
 	}graph_node_table;
 	
 	class GraphNodeIO
