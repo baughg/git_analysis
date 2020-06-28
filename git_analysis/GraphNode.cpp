@@ -51,6 +51,22 @@ void GraphNode::get_line_and_char_count(
 	char_count += character_count_;
 }
 
+void GraphNode::get_serialised_entry(
+	graph_node_entry &entry,
+	std::vector<uint64_t> &child_nodes) {
+	entry.children = static_cast<uint32_t>(children_.size());
+
+	child_nodes.resize(entry.children);
+	entry.parent = parent_ != nullptr ? parent_->node_id_ : ~0ULL;
+	entry.line_count = line_count_;
+	entry.character_count = character_count_;
+	entry.line_count_deltan = line_count_deltan_;
+	entry.line_count_deltap = line_count_deltap_;
+	entry.character_count_deltan = character_count_deltan_;
+	entry.character_count_deltap = character_count_deltap_;
+	entry.type = static_cast<uint32_t>(source_type_);
+}
+
 bool GraphNode::process() {
 	const bool has_children{ children_.size() > 0 };
 	terminal_node_ |= children_.size() == 1 && parent_ != nullptr;

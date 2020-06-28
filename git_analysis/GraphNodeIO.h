@@ -21,7 +21,7 @@ namespace GB {
 		uint16_t name_len{};
 		uint16_t short_name_len{};
 	}graph_node_table;
-
+	
 	class GraphNodeIO
 	{
 	public:		

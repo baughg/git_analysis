@@ -2,12 +2,23 @@
 #include <string>
 #include <deque>
 #include <cstdint>
+#include <vector>
 #include <memory>
 #include <map>
 #include "IO.h"
 
 namespace GB {
-	
+	typedef struct {
+		uint64_t parent{};
+		uint32_t children{};
+		uint64_t line_count{};
+		uint64_t character_count{};
+		int64_t line_count_deltap{};
+		int64_t character_count_deltap{};
+		int64_t line_count_deltan{};
+		int64_t character_count_deltan{};
+		uint32_t type;
+	}graph_node_entry;
 
 	class GraphNode
 	{
@@ -58,6 +69,8 @@ namespace GB {
 		void set_terminal_node(const bool &terminal) { terminal_node_ = terminal; }
 		SourceCodeType get_source_type() { return source_type_; }
 		void set_source_type(const SourceCodeType &type) { source_type_ = type; }
+		void get_serialised_entry(
+			graph_node_entry &entry, std::vector<uint64_t> &child_nodes);
 	private:		
 		std::shared_ptr<GraphNode> parent_{};
 		std::deque< std::shared_ptr<GraphNode>> children_{};
