@@ -13,13 +13,17 @@ namespace GB {
 
 	typedef struct {
 		uint64_t offset_to_next_graph{};
-		uint32_t node_count{};		
+		uint32_t node_count{};
+		uint32_t hash_len{};
+		uint32_t file_count{};
+		int32_t source_file_count{};
 	}graph_write_header;
 
 	typedef struct {
 		uint64_t node_id{};
 		uint32_t name_len : 16;
 		uint32_t short_name_len : 16;
+		uint32_t row{};
 	}graph_node_table;
 	
 	class GraphNodeIO

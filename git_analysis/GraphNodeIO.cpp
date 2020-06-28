@@ -27,11 +27,20 @@ bool GraphNodeIO::open(
 
 bool GraphNodeIO::write(CommitGraph &graph) {
 	std::map<std::string, uint64_t> node_id_lut{};
-	graph_write_header header{0, static_cast<uint32_t>(graph.node_lut_.size()) };
-	const auto header_pos{ graph_stream_.tellp() };
-	graph_stream_.write(reinterpret_cast<const char*>(&header),sizeof(header));
-	size_t bytes_written{};
 
+	graph_write_header header{
+		0,
+		static_cast<uint32_t>(graph.node_lut_.size()),
+	static_cast<uint32_t>(graph.commit_hash_.length()),
+	graph.file_count_,
+	graph.source_code_file_count_ };
+
+	const auto header_pos{ graph_stream_.tellp() };
+	graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
+	graph_stream_.write(graph.commit_hash_.c_str(), graph.commit_hash_.length());
+
+	size_t bytes_written{};
+	uint32_t row{};
 	for (auto &it : graph.node_lut_) {
 		const uint64_t node_id{ it.second->node_id_ };
 		const std::string node_name{ it.second->name_ };
@@ -41,7 +50,8 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 
 		graph_node_table table_entry{ node_id,
 			static_cast<uint16_t>(node_name.length()),
-			static_cast<uint16_t>(short_name.length())
+			static_cast<uint16_t>(short_name.length()),
+			row++
 		};
 
 		bytes_written += sizeof(table_entry);
@@ -62,7 +72,7 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		bytes_written += sizeof(entry);
 
 		if (entry.children) {
-			graph_stream_.write(reinterpret_cast<const char*>(&child_nodes[0]), 
+			graph_stream_.write(reinterpret_cast<const char*>(&child_nodes[0]),
 				sizeof(uint64_t)*entry.children);
 
 			bytes_written += (sizeof(uint64_t) * entry.children);
