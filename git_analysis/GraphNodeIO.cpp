@@ -82,6 +82,7 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 	}
 
 	graph.node_lut_.clear();
+	graph.top_node_ = nullptr;
 	return true;
 }
 
