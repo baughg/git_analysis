@@ -48,8 +48,17 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		graph_stream_.write(short_name.c_str(), short_name.length());
 	}
 
-	for (auto &it : graph.node_lut_) {
+	graph_node_entry entry{};
+	std::vector<uint64_t> child_nodes{};
 
+	for (auto &it : graph.node_lut_) {
+		it.second->get_serialised_entry(entry, child_nodes);
+		graph_stream_.write(reinterpret_cast<const char*>(&entry), sizeof(entry));
+
+		if (entry.children) {
+			graph_stream_.write(reinterpret_cast<const char*>(&child_nodes[0]), 
+				sizeof(uint64_t)*entry.children);
+		}
 	}
 	graph_stream_.flush();
 	return true;
