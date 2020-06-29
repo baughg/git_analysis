@@ -32,15 +32,15 @@ std::string GraphNodeIO::human_friendly_file_size(const uint64_t &sz) {
 	uint64_t sz_uint{ sz };
 
 	if (sz >= (1ULL << 30)) {
-		sz_uint >= 30;
+		sz_uint >>= 30;
 		str << sz_uint << "GB";
 	}
 	else if (sz >= (1ULL << 20)) {
-		sz_uint >= 20;
+		sz_uint >>= 20;
 		str << sz_uint << "MB";
 	}
 	else if (sz >= (1ULL << 10)) {
-		sz_uint >= 10;
+		sz_uint >>= 10;
 		str << sz_uint << "KB";
 	}
 	else {
