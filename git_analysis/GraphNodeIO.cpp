@@ -1,6 +1,7 @@
 #include "GraphNodeIO.h"
 #include <iostream>
 #include <cassert>
+#include <sstream>
 
 using namespace GB;
 
@@ -24,6 +25,29 @@ bool GraphNodeIO::open(
 	strcpy_s(header.branch, branch_name.c_str());
 	graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
 	return true;
+}
+
+std::string GraphNodeIO::human_friendly_file_size(const uint64_t &sz) {
+	std::stringstream str{};
+	uint64_t sz_uint{ sz };
+
+	if (sz >= (1ULL << 30)) {
+		sz_uint >= 30;
+		str << sz_uint << "GB";
+	}
+	else if (sz >= (1ULL << 20)) {
+		sz_uint >= 20;
+		str << sz_uint << "MB";
+	}
+	else if (sz >= (1ULL << 10)) {
+		sz_uint >= 10;
+		str << sz_uint << "KB";
+	}
+	else {
+		str << sz_uint << "B";
+	}
+	
+	return str.str();
 }
 
 bool GraphNodeIO::write(CommitGraph &graph) {
@@ -81,7 +105,10 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 	}
 
 	file_size_ += bytes_written;
-	std::cout << "Write " << graph.commit_hash_ << " " << std::endl;
+	std::cout << "Write " << graph.commit_hash_ << " graph size: " 
+		<< human_friendly_file_size(bytes_written) << " file size: "
+		<< human_friendly_file_size(file_size_)
+		<< std::endl;
 
 	const auto end_pos{ graph_stream_.tellp() };
 	graph_stream_.seekp(header_pos);

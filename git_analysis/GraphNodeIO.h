@@ -35,7 +35,7 @@ namespace GB {
 		bool write(CommitGraph &graph);
 		void close();
 	private:
-		//std::string 
+		std::string human_friendly_file_size(const uint64_t &sz);
 		std::ofstream graph_stream_{};
 		uint64_t file_size_{};
 	};
