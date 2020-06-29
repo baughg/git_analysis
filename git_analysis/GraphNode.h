@@ -9,15 +9,15 @@
 
 namespace GB {
 	typedef struct {
-		uint64_t parent{};
-		uint32_t children{};
-		uint32_t type;
+		uint64_t parent{};		
 		uint64_t line_count{};
 		uint64_t character_count{};
-		int64_t line_count_deltap{};
-		int64_t character_count_deltap{};
-		int64_t line_count_deltan{};
-		int64_t character_count_deltan{};		
+		uint32_t children{};
+		uint32_t type;
+		int32_t line_count_deltap{};
+		int32_t character_count_deltap{};
+		int32_t line_count_deltan{};
+		int32_t character_count_deltan{};		
 	}graph_node_entry;
 
 	class GraphNode
@@ -45,19 +45,19 @@ namespace GB {
 		}
 
 		void set_next(std::shared_ptr<GraphNode> node) {
-			line_count_deltan_ = static_cast<int64_t>(line_count_)
-				- static_cast<int64_t>(node->line_count_);
+			line_count_deltan_ = static_cast<int32_t>(static_cast<int64_t>(line_count_)
+				- static_cast<int64_t>(node->line_count_));
 
-			character_count_deltan_ = static_cast<int64_t>(character_count_)
-				- static_cast<int64_t>(node->character_count_);
+			character_count_deltan_ = static_cast<int32_t>(static_cast<int64_t>(character_count_)
+				- static_cast<int64_t>(node->character_count_));
 		}
 
 		void set_previous(std::shared_ptr<GraphNode> node) {
-			line_count_deltap_ = static_cast<int64_t>(line_count_) 
-				- static_cast<int64_t>(node->line_count_);
+			line_count_deltap_ = static_cast<int32_t>(static_cast<int64_t>(line_count_) 
+				- static_cast<int64_t>(node->line_count_));
 
-			character_count_deltap_ = static_cast<int64_t>(character_count_) 
-				- static_cast<int64_t>(node->character_count_);			
+			character_count_deltap_ = static_cast<int32_t>(static_cast<int64_t>(character_count_)
+				- static_cast<int64_t>(node->character_count_));			
 		}
 
 		void is_root() { is_root_ = true; }
@@ -81,10 +81,10 @@ namespace GB {
 		bool is_root_{ false };
 		uint64_t line_count_{};
 		uint64_t character_count_{};
-		int64_t line_count_deltap_{};
-		int64_t character_count_deltap_{};
-		int64_t line_count_deltan_{};
-		int64_t character_count_deltan_{};
+		int32_t line_count_deltap_{};
+		int32_t character_count_deltap_{};
+		int32_t line_count_deltan_{};
+		int32_t character_count_deltan_{};
 		bool read_file_{ false };
 		bool terminal_node_{ false };
 		SourceCodeType source_type_{ SourceCodeType::none };
