@@ -1,4 +1,5 @@
 #include "GraphNodeIO.h"
+#include <iostream>
 #include <cassert>
 
 using namespace GB;
@@ -78,6 +79,9 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 			bytes_written += (sizeof(uint64_t) * entry.children);
 		}
 	}
+
+	file_size_ += bytes_written;
+	std::cout << "Write " << graph.commit_hash_ << " " << std::endl;
 
 	const auto end_pos{ graph_stream_.tellp() };
 	graph_stream_.seekp(header_pos);

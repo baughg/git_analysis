@@ -134,8 +134,10 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	CommitGraph *prev_commit_graph_ptr{};
 	std::deque<CommitGraph*> graph_queue{};
 	GraphNodeIO graph_io{};
-	graph_io.open("GitCommitGraph.gb",static_cast<uint32_t>(commits_.size()),"master");
-
+	const uint32_t commit_count{ static_cast<uint32_t>(commits_.size()) };
+	graph_io.open("GitCommitGraph.gb", commit_count,"master");
+	uint32_t commit_no{1};
+	
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
 
@@ -151,8 +153,12 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 		}
 
 		{
-			std::ofstream batch_file{ batch_filename.c_str() };			
-			std::cout << "git checkout " << hash_str << std::endl;
+			std::ofstream batch_file{ batch_filename.c_str() };	
+
+			std::cout << "git checkout " << hash_str 
+				<< " " << commit_no++ 
+				<< " of " << commit_count << std::endl;
+
 			batch_file << "git.exe checkout " << hash_str << std::endl;
 			batch_file << "git.exe ls-files >" << git_out_filename << std::endl;
 			batch_file.close();
