@@ -1,7 +1,7 @@
 #pragma once
 #include "GitCommit.h"
 #include "GitLogNode.h"
-#include "../platform_os/platform_os/PlatformOS.h"
+#include "../git_analysis/platform_os/platform_os/PlatformOS.h"
 #include <deque>
 
 namespace GB {
