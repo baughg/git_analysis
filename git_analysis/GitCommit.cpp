@@ -5,6 +5,12 @@ using namespace GB;
 
 void GitCommit::set_date(const std::string &date_str) {
 	auto position{ date_str.find_first_of('+') };
+  auto position_neg {date_str.find_first_of('-')};
+
+  if(position_neg < position){
+    position = position_neg;
+  }
+
 	position += 5;
 
 	date_str_ = date_str.substr(0, position);
