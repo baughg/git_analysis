@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
+#include <map>
 
 namespace GB {
 	typedef struct {
@@ -35,9 +36,11 @@ namespace GB {
 		bool write(CommitGraph &graph);
 		void close();
 	private:
+		bool load_graphs(const uint32_t &commits);
 		std::string human_friendly_file_size(const uint64_t &sz);
-		std::ofstream graph_stream_{};
+		std::fstream graph_stream_{};
 		uint64_t file_size_{};
+		std::map<std::string, uint64_t> graph_offset_lut;
 	};
 }
 
