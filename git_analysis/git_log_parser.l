@@ -7,7 +7,7 @@
   #include <fstream>
   #include "git_log_parser.tab.hh"
   #include "GitCommitCreator.h"  
-  #include "platform_os/platform_os/WindowsPlatform.h"
+  #include "platform_os/WindowsPlatform.h"
   #include <cassert>
 
   using namespace std;
