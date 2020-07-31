@@ -21,9 +21,10 @@ namespace GB {
 	}graph_write_header;
 
 	typedef struct {
+		uint64_t row : 32;
+		uint64_t graph_number : 32;
 		uint32_t name_len : 16;
-		uint32_t short_name_len : 16;
-		uint32_t row;
+		uint32_t short_name_len : 16;		
 	}name_length_info;
 
 	typedef struct {

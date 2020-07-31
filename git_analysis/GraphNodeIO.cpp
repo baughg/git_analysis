@@ -101,9 +101,10 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		node_id_lut[node_name] = node_id;
 
 		graph_node_table table_entry{ node_id,
+			row++,
+			commit_no,
 			static_cast<uint16_t>(node_name.length()),
-			static_cast<uint16_t>(short_name.length()),
-			row++
+			static_cast<uint16_t>(short_name.length())			
 		};
 
 		bytes_written += sizeof(table_entry);
