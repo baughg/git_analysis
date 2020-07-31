@@ -41,6 +41,11 @@ namespace GB {
 		node_reference reference;		
 	}graph_node_table;
 	
+	typedef struct {
+		uint64_t node_id{};
+		uint32_t graph_number{};
+	}graph_name_ref_str;
+
 	class GraphNodeIO
 	{
 	public:		
@@ -55,7 +60,7 @@ namespace GB {
 		std::fstream graph_stream_{};
 		uint64_t file_size_{};
 		std::map<std::string, uint64_t> graph_offset_lut_{};
-		std::map<std::string, uint64_t> global_node_id_lut_{};
+		std::map<std::string, graph_name_ref_str> global_node_id_lut_{};
 	};
 }
 

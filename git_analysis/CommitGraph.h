@@ -15,6 +15,12 @@ namespace GB {
 		void set_hash(const std::string &hash) {
 			commit_hash_ = hash;
 		}
+		void set_commit_number(const uint32_t &num) {
+			commit_number_ = num;
+		}
+		uint32_t get_commit_number() {
+			return commit_number_;
+		}
 	private:
 		std::shared_ptr<GraphNode> top_node_{};
 		std::map<std::string, std::shared_ptr<GraphNode>> node_lut_{};
@@ -22,6 +28,7 @@ namespace GB {
 		std::string commit_hash_{};
 		uint32_t file_count_{};
 		int32_t source_code_file_count_{};
+		uint32_t commit_number_{};
 		friend class GraphNodeIO;
 	};
 }

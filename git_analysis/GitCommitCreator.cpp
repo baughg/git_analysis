@@ -137,9 +137,11 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	const uint32_t commit_count{ static_cast<uint32_t>(commits_.size()) };
 	graph_io.open("GitCommitGraph.gb", commit_count,"master");
 	uint32_t commit_no{1};
-	
+	uint32_t commit_index{};
+
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
+		commit.get_reference_graph()->set_commit_number(commit_index++);
 
 		if (prev_hash_str.length()) {
 			std::ofstream batch_file{ batch_filename.c_str() };			
@@ -181,7 +183,7 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 
 	for (size_t q{}; q < queue_size; ++q) {
 		graph_io.write(*graph_queue.front());
-		graph_queue.pop_front();
+		graph_queue.pop_front();		
 	}
 
 	graph_io.close();

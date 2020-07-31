@@ -73,7 +73,7 @@ bool GraphNodeIO::load_graphs(const uint32_t &commits)
 
 bool GraphNodeIO::write(CommitGraph &graph) {
 	std::map<std::string, uint64_t> node_id_lut{};
-
+	const uint32_t commit_no{ graph.get_commit_number() };
 	graph_write_header header{
 		0,
 		static_cast<uint32_t>(graph.node_lut_.size()),
@@ -91,7 +91,13 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		const uint64_t node_id{ it.second->node_id_ };
 		const std::string node_name{ it.second->name_ };
 		const std::string short_name{ it.second->short_name_ };
-
+		auto nit{ global_node_id_lut_.find(node_name) };
+		const bool have_name_reference{ nit != global_node_id_lut_.end() };
+		
+		if (!have_name_reference) {
+			global_node_id_lut_[node_name] = graph_name_ref_str{ node_id, commit_no };
+		}
+		
 		node_id_lut[node_name] = node_id;
 
 		graph_node_table table_entry{ node_id,
