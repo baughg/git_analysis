@@ -100,12 +100,14 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		
 		node_id_lut[node_name] = node_id;
 
-		graph_node_table table_entry{ node_id,
+		/*graph_node_table table_entry{ node_id,
 			row++,
 			commit_no,
 			static_cast<uint16_t>(node_name.length()),
 			static_cast<uint16_t>(short_name.length())			
-		};
+		};*/
+
+		graph_node_table table_entry{};
 
 		bytes_written += sizeof(table_entry);
 
@@ -117,7 +119,13 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 			table_entry.reference.graph_name_ref.reference_node = node_ref.node_id;
 			graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
 		}
-		else {			
+		else {	
+			table_entry.node_id.node_id = node_id;
+			table_entry.reference.name_length.row = row++;
+			table_entry.reference.name_length.name_len = static_cast<uint16_t>(node_name.length());
+			table_entry.reference.name_length.short_name_len = static_cast<uint16_t>(short_name.length());
+			table_entry.reference.name_length.graph_number = commit_no;
+
 			bytes_written += table_entry.reference.name_length.name_len;
 			bytes_written += table_entry.reference.name_length.name_len;
 

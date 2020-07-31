@@ -37,9 +37,9 @@ namespace GB {
 		graph_name_reference graph_name_ref;
 	}node_reference;
 
-	typedef struct {
-		uint64_t soft_link : 1;
+	typedef struct {		
 		uint64_t node_id : 63;
+		uint64_t soft_link : 1;
 	}node_id_link;
 
 	typedef union {
