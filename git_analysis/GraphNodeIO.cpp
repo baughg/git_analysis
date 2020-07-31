@@ -107,12 +107,23 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		};
 
 		bytes_written += sizeof(table_entry);
-		bytes_written += table_entry.reference.name_length.name_len;
-		bytes_written += table_entry.reference.name_length.name_len;
 
-		graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
-		graph_stream_.write(node_name.c_str(), node_name.length());
-		graph_stream_.write(short_name.c_str(), short_name.length());
+		if (have_name_reference) {
+			const graph_name_ref_str node_ref{ global_node_id_lut_[node_name] };
+			table_entry.node_id.node_id_lnk.soft_link = 1;
+			table_entry.node_id.node_id_lnk.node_id = node_id;
+			table_entry.reference.graph_name_ref.graph_number = node_ref.graph_number;
+			table_entry.reference.graph_name_ref.reference_node = node_ref.node_id;
+			graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
+		}
+		else {			
+			bytes_written += table_entry.reference.name_length.name_len;
+			bytes_written += table_entry.reference.name_length.name_len;
+
+			graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
+			graph_stream_.write(node_name.c_str(), node_name.length());
+			graph_stream_.write(short_name.c_str(), short_name.length());
+		}
 	}
 
 	graph_node_entry entry{};

@@ -37,7 +37,17 @@ namespace GB {
 	}node_reference;
 
 	typedef struct {
-		uint64_t node_id{};		
+		uint64_t soft_link : 1;
+		uint64_t node_id : 63;
+	}node_id_link;
+
+	typedef union {
+		node_id_link node_id_lnk;
+		uint64_t node_id;
+	}node_id_entry;
+
+	typedef struct {
+		node_id_entry node_id;
 		node_reference reference;		
 	}graph_node_table;
 	
