@@ -21,10 +21,24 @@ namespace GB {
 	}graph_write_header;
 
 	typedef struct {
-		uint64_t node_id{};
 		uint32_t name_len : 16;
 		uint32_t short_name_len : 16;
-		uint32_t row{};
+		uint32_t row;
+	}name_length_info;
+
+	typedef struct {
+		uint64_t reference_node;
+		uint32_t graph_number;
+	}graph_name_reference;
+
+	typedef union {
+		name_length_info name_length;
+		graph_name_reference graph_name_ref;
+	}node_reference;
+
+	typedef struct {
+		uint64_t node_id{};		
+		node_reference reference;		
 	}graph_node_table;
 	
 	class GraphNodeIO
@@ -40,7 +54,8 @@ namespace GB {
 		std::string human_friendly_file_size(const uint64_t &sz);
 		std::fstream graph_stream_{};
 		uint64_t file_size_{};
-		std::map<std::string, uint64_t> graph_offset_lut;
+		std::map<std::string, uint64_t> graph_offset_lut_{};
+		std::map<std::string, uint64_t> global_node_id_lut_{};
 	};
 }
 

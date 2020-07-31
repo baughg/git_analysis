@@ -57,16 +57,17 @@ std::string GraphNodeIO::human_friendly_file_size(const uint64_t &sz) {
 
 bool GraphNodeIO::load_graphs(const uint32_t &commits)
 {	
+	return false;
 	graph_stream_header header{};
 	const auto current_pos{ graph_stream_.tellp() };
 	graph_stream_.seekg(0,std::ios::beg);
-	//graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
+	graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
 
 	if (header.commits) {
 		return true;
 	}
 
-	graph_stream_.seekp(current_pos);
+	graph_stream_.seekp(0, std::ios::beg);
 	return false;
 }
 
@@ -100,8 +101,8 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		};
 
 		bytes_written += sizeof(table_entry);
-		bytes_written += table_entry.name_len;
-		bytes_written += table_entry.name_len;
+		bytes_written += table_entry.reference.name_length.name_len;
+		bytes_written += table_entry.reference.name_length.name_len;
 
 		graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
 		graph_stream_.write(node_name.c_str(), node_name.length());
