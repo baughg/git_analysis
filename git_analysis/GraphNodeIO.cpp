@@ -67,13 +67,40 @@ bool GraphNodeIO::load_graphs(const uint32_t &commits)
 	graph_stream_header header{};	
 	graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
 
+	if (!header.commits)
+	{
+		graph_stream_.close();
+		return false;
+	}
+
+	int32_t commits_in_header{ static_cast<int32_t>(header.commits) };
 	graph_write_header write_header{};
 
-	const auto header_pos{ graph_stream_.tellp() };
 	graph_stream_.read(reinterpret_cast<char*>(&write_header), sizeof(write_header));
 	std::vector<char> commit_hash(write_header.hash_len + 1);
 	graph_stream_.read(commit_hash.data(), write_header.hash_len);
 	std::string commit_str{ std::string(commit_hash.data()) };
+	graph_offset_lut_[commit_str] = sizeof(header);
+	graph_commit_io_.push_back(commit_io{ commit_str,sizeof(header) });
+	commits_in_header--;
+	uint64_t total_offset{ 
+		sizeof(header) + sizeof(write_header) + 
+		write_header.offset_to_next_graph  + static_cast<uint64_t>(write_header.hash_len)};
+
+	graph_stream_.seekp(write_header.offset_to_next_graph, std::ios::cur);
+
+	while (commits_in_header) {		
+		graph_stream_.read(reinterpret_cast<char*>(&write_header), sizeof(write_header));
+		graph_stream_.read(commit_hash.data(), write_header.hash_len);
+		std::string commit_str{ std::string(commit_hash.data()) };
+		graph_offset_lut_[commit_str] = total_offset;
+		graph_commit_io_.push_back(commit_io{ commit_str,total_offset });
+		total_offset += sizeof(write_header);
+		total_offset += static_cast<uint64_t>(write_header.hash_len);
+		total_offset += write_header.offset_to_next_graph;
+		graph_stream_.seekp(write_header.offset_to_next_graph, std::ios::cur);
+		commits_in_header--;
+	}
 
 	graph_stream_.close();
 	return true;
@@ -135,7 +162,7 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 			table_entry.reference.name_length.graph_number = commit_no;
 
 			bytes_written += table_entry.reference.name_length.name_len;
-			bytes_written += table_entry.reference.name_length.name_len;
+			bytes_written += table_entry.reference.name_length.short_name_len;
 
 			graph_stream_.write(reinterpret_cast<const char*>(&table_entry), sizeof(table_entry));
 			graph_stream_.write(node_name.c_str(), node_name.length());

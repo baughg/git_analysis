@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <deque>
 
 namespace GB {
 	typedef struct {
@@ -57,6 +58,11 @@ namespace GB {
 		uint32_t graph_number{};
 	}graph_name_ref_str;
 
+	typedef struct {
+		std::string hash;
+		uint64_t offset{};
+	}commit_io;
+
 	class GraphNodeIO
 	{
 	public:		
@@ -74,6 +80,7 @@ namespace GB {
 		uint64_t file_size_{};
 		std::map<std::string, uint64_t> graph_offset_lut_{};
 		std::map<std::string, graph_name_ref_str> global_node_id_lut_{};
+		std::deque<commit_io> graph_commit_io_;
 	};
 }
 
