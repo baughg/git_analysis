@@ -15,7 +15,7 @@ bool GraphNodeIO::open(
 
 	if (!load_graphs(commits)) {
 		graph_stream_.open(filename,
-			std::ios_base::binary | std::ios::out | std::ios::in | std::ios::app);
+			std::ios_base::binary | std::ios::out | std::ios_base::ate);
 
 		assert(graph_stream_.is_open());
 		graph_stream_header header{};
@@ -66,6 +66,15 @@ bool GraphNodeIO::load_graphs(const uint32_t &commits)
 
 	graph_stream_header header{};	
 	graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
+
+	graph_write_header write_header{};
+
+	const auto header_pos{ graph_stream_.tellp() };
+	graph_stream_.read(reinterpret_cast<char*>(&write_header), sizeof(write_header));
+	std::vector<char> commit_hash(write_header.hash_len + 1);
+	graph_stream_.read(commit_hash.data(), write_header.hash_len);
+	std::string commit_str{ std::string(commit_hash.data()) };
+
 	graph_stream_.close();
 	return true;
 }
@@ -157,10 +166,10 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 		<< std::endl;
 
 	const auto end_pos{ graph_stream_.tellp() };
-	graph_stream_.seekp(header_pos);
+	graph_stream_.seekp(header_pos, std::ios::beg);	
 	header.offset_to_next_graph = static_cast<uint64_t>(bytes_written);
 	graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
-	graph_stream_.seekp(end_pos);
+	graph_stream_.seekp(end_pos, std::ios::beg);
 	graph_stream_.flush();
 
 	for (auto &it : graph.node_lut_) {
