@@ -12,23 +12,31 @@ bool GraphNodeIO::open(
 {
 	filename_ = filename;
 	branch_ = branch;	
+	const bool graph_loaded{ load_graphs(commits) };
 
-	if (!load_graphs(commits)) {
-		graph_stream_.open(filename,
-			std::ios_base::binary | std::ios::out | std::ios_base::ate);
+	graph_stream_.open(filename,
+		std::ios_base::binary | std::ios::out | std::ios_base::in);
 
-		assert(graph_stream_.is_open());
-		graph_stream_header header{};
+	assert(graph_stream_.is_open());
+	const auto end_pos{ graph_stream_.tellp() };
+	graph_stream_.seekp(0, std::ios::beg);
+	graph_stream_header header{};
 
-		header.commits = commits;
-		std::string branch_name{ branch };
+	header.commits = commits;
+	std::string branch_name{ branch };
 
-		if (branch_name.length() >= sizeof(header.branch)) {
-			branch_name = branch_name.substr(sizeof(header.branch) - 1);
-		}
+	if (branch_name.length() >= sizeof(header.branch)) {
+		branch_name = branch_name.substr(sizeof(header.branch) - 1);
+	}
 
-		strcpy_s(header.branch, branch_name.c_str());
-		graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
+	strcpy_s(header.branch, branch_name.c_str());
+	graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
+
+	if (graph_loaded) {
+		graph_stream_.seekp(0, std::ios::end);
+		uint32_t mark{ 0xbeaadcff };
+		graph_stream_.write(reinterpret_cast<const char*>(&mark), sizeof(mark));
+		graph_stream_.flush();
 	}
 	return true;
 }
