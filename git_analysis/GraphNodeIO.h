@@ -66,6 +66,8 @@ namespace GB {
 		bool write(CommitGraph &graph);
 		void close();
 	private:
+		std::string filename_;
+		std::string branch_;
 		bool load_graphs(const uint32_t &commits);
 		std::string human_friendly_file_size(const uint64_t &sz);
 		std::fstream graph_stream_{};

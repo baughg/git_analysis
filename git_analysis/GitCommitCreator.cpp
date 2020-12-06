@@ -187,6 +187,7 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	}
 
 	graph_io.close();
+	// git shortlog -sn --no-merges
 	std::ofstream batch_file{ batch_filename.c_str() };
 	std::cout << "git checkout master" << std::endl;
 	batch_file << "git.exe checkout master" << std::endl;	

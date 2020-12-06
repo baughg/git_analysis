@@ -10,13 +10,14 @@ bool GraphNodeIO::open(
 	const uint32_t &commits,
 	const std::string &branch)
 {
-
-	graph_stream_.open(filename, 
-		std::ios_base::binary | std::ios::out | std::ios::in | std::ios::app);
-
-	assert(graph_stream_.is_open());
+	filename_ = filename;
+	branch_ = branch;	
 
 	if (!load_graphs(commits)) {
+		graph_stream_.open(filename,
+			std::ios_base::binary | std::ios::out | std::ios::in | std::ios::app);
+
+		assert(graph_stream_.is_open());
 		graph_stream_header header{};
 
 		header.commits = commits;
@@ -56,19 +57,17 @@ std::string GraphNodeIO::human_friendly_file_size(const uint64_t &sz) {
 }
 
 bool GraphNodeIO::load_graphs(const uint32_t &commits)
-{	
-	return false;
-	graph_stream_header header{};
-	const auto current_pos{ graph_stream_.tellp() };
-	graph_stream_.seekg(0,std::ios::beg);
+{		
+	graph_stream_.open(filename_,
+		std::ios_base::binary | std::ios::in);
+
+	if (!graph_stream_.is_open())
+		return false;
+
+	graph_stream_header header{};	
 	graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
-
-	if (header.commits) {
-		return true;
-	}
-
-	graph_stream_.seekp(0, std::ios::beg);
-	return false;
+	graph_stream_.close();
+	return true;
 }
 
 bool GraphNodeIO::write(CommitGraph &graph) {
