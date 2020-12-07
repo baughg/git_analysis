@@ -63,7 +63,8 @@ std::string GraphNodeIO::human_friendly_file_size(const uint64_t &sz) {
 }
 
 bool GraphNodeIO::load_graphs(const uint32_t &commits)
-{		
+{	
+	new_commits_ = true;
 	graph_stream_.open(filename_,
 		std::ios_base::binary | std::ios::in);
 
@@ -79,6 +80,7 @@ bool GraphNodeIO::load_graphs(const uint32_t &commits)
 		return false;
 	}
 
+	new_commits_ = commits > header.commits;
 	int32_t commits_in_header{ static_cast<int32_t>(header.commits) };
 	graph_write_header write_header{};
 
@@ -220,15 +222,15 @@ void GraphNodeIO::close() {
 }
 
 bool GraphNodeIO::commit_processed(const std::string &hash, bool &write_graph) {
-	auto it{ global_node_id_lut_.find(hash) };
+	auto it{ graph_offset_lut_.find(hash) };
 	write_graph = true;
 
-	if (it == global_node_id_lut_.end())
+	if (it == graph_offset_lut_.end())
 		return false;
 
 	if (graph_commit_io_.size() && graph_commit_io_.back().hash == hash) {
 		write_graph = false;
-		return false;
+		return !new_commits_;
 	}
 
 	return true;

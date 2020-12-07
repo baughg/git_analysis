@@ -82,6 +82,7 @@ namespace GB {
 		std::map<std::string, uint64_t> graph_offset_lut_{};
 		std::map<std::string, graph_name_ref_str> global_node_id_lut_{};
 		std::deque<commit_io> graph_commit_io_;
+		bool new_commits_{ false };
 	};
 }
 
