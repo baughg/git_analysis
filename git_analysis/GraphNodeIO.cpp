@@ -68,8 +68,12 @@ bool GraphNodeIO::load_graphs(const uint32_t &commits)
 	graph_stream_.open(filename_,
 		std::ios_base::binary | std::ios::in);
 
-	if (!graph_stream_.is_open())
+	if (!graph_stream_.is_open()) {
+		graph_stream_.open(filename_,
+			std::ios_base::binary | std::ios::out);
+		graph_stream_.close();
 		return false;
+	}
 
 	graph_stream_header header{};	
 	graph_stream_.read(reinterpret_cast<char*>(&header), sizeof(header));
