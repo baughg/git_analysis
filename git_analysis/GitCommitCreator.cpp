@@ -133,15 +133,23 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 	std::string prev_hash_str{};
 	CommitGraph *prev_commit_graph_ptr{};
 	std::deque<CommitGraph*> graph_queue{};
+	std::deque<bool> write_graph_queue{};
+
 	GraphNodeIO graph_io{};
 	const uint32_t commit_count{ static_cast<uint32_t>(commits_.size()) };
 	graph_io.open("GitCommitGraph.gb", commit_count,"master");
 	uint32_t commit_no{1};
 	uint32_t commit_index{};
+	bool write_graph{};
 
 	for (auto &commit : commits_) {
 		const std::string hash_str{ commit.get_hash() };
 		commit.get_reference_graph()->set_commit_number(commit_index++);
+
+		if (graph_io.commit_processed(hash_str, write_graph))
+		{
+			continue;
+		}
 
 		if (prev_hash_str.length()) {
 			std::ofstream batch_file{ batch_filename.c_str() };			
@@ -171,19 +179,26 @@ bool GitCommitCreator::generate_commit_graph(PlatformOS &os)
 		commit.generate_graph(git_out_filename, git_diff_filename);
 		prev_commit_graph_ptr = commit.get_reference_graph();
 		graph_queue.push_back(prev_commit_graph_ptr);
+		write_graph_queue.push_back(write_graph);
 		prev_hash_str = hash_str;
 
 		if (graph_queue.size() >= 3) {
-			graph_io.write(*graph_queue.front());
+			if (write_graph_queue.front()) {
+				graph_io.write(*graph_queue.front());
+			}
 			graph_queue.pop_front();
+			write_graph_queue.pop_front();
 		}
 	}
 
 	const size_t queue_size{ graph_queue.size() };
 
 	for (size_t q{}; q < queue_size; ++q) {
-		graph_io.write(*graph_queue.front());
-		graph_queue.pop_front();		
+		if (write_graph_queue.front()) {
+			graph_io.write(*graph_queue.front());
+		}
+		graph_queue.pop_front();
+		write_graph_queue.pop_front();
 	}
 
 	graph_io.close();

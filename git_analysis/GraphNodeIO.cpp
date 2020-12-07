@@ -33,9 +33,7 @@ bool GraphNodeIO::open(
 	graph_stream_.write(reinterpret_cast<const char*>(&header), sizeof(header));
 
 	if (graph_loaded) {
-		graph_stream_.seekp(0, std::ios::end);
-		uint32_t mark{ 0xbeaadcff };
-		graph_stream_.write(reinterpret_cast<const char*>(&mark), sizeof(mark));
+		graph_stream_.seekp(0, std::ios::end);		
 		graph_stream_.flush();
 	}
 	return true;
@@ -219,4 +217,19 @@ bool GraphNodeIO::write(CommitGraph &graph) {
 
 void GraphNodeIO::close() {
 	graph_stream_.close();
+}
+
+bool GraphNodeIO::commit_processed(const std::string &hash, bool &write_graph) {
+	auto it{ global_node_id_lut_.find(hash) };
+	write_graph = true;
+
+	if (it == global_node_id_lut_.end())
+		return false;
+
+	if (graph_commit_io_.size() && graph_commit_io_.back().hash == hash) {
+		write_graph = false;
+		return false;
+	}
+
+	return true;
 }

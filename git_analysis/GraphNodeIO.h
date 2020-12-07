@@ -71,6 +71,7 @@ namespace GB {
 			const std::string &branch);
 		bool write(CommitGraph &graph);
 		void close();
+		bool commit_processed(const std::string &hash, bool &write_graph);
 	private:
 		std::string filename_;
 		std::string branch_;
